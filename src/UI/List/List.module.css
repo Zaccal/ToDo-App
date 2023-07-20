@@ -1,0 +1,3 @@
+.List div + div {
+    @apply mt-1;
+}
