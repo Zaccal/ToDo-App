@@ -5,7 +5,7 @@ interface IListItem {
     icon?: ReactElement,
     messageCount?: number,
     active?: boolean,
-    onClick?: MouseEventHandler<HTMLDivElement>
+    onClick?: MouseEventHandler<HTMLDivElement>,
 }
 
 const ListItem = ({primary, icon, messageCount, active, onClick}: IListItem) => {

@@ -14,6 +14,7 @@ import BarFooter from "../../UI/BarFooter/BarFooter"
 import Button from "../../UI/Button/Button"
 import { GiSettingsKnobs } from 'react-icons/gi'
 import { ImExit } from 'react-icons/im'
+import { AiOutlinePlus } from 'react-icons/ai'
 
 export {
   BarContainer,
@@ -31,5 +32,6 @@ export {
   BarFooter,
   Button,
   GiSettingsKnobs,
-  ImExit
+  ImExit,
+  AiOutlinePlus
 }
