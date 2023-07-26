@@ -33,7 +33,7 @@ const Button = ({children, icon, onClick, variant, className, isLink, to}: IButt
                 fontWeight: '700',
                 display: 'flex',
                 justifyContent: 'center',
-                padding: '12px 8px'
+                padding: '12px 8px',
             }
             case 'outline': return {
                 borderRadius: '8px',

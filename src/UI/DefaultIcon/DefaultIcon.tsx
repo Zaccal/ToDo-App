@@ -1,4 +1,4 @@
-import { BsFillSquareFill } from 'react-icons/bs'
+import SquareRoundedIcon from '@mui/icons-material/SquareRounded';
 
 type TypeDefaultIcon = {
     color?: string,
@@ -11,7 +11,7 @@ const DefaultIcon = ({color}: TypeDefaultIcon) => {
         <div style={{
             color: color ? color : '#898989' 
         }}>
-            <BsFillSquareFill />
+            <SquareRoundedIcon style={{width: '18px', height: '18px'}}/>
         </div>
     )
 }

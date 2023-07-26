@@ -3,10 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #cccccc transparent;
+    }
+
     body {
         font-family: 'Manrope', sans-serif;
         @apply font-normal;
         @apply bg-[#FAFAFA];
+    }
+
+    body.lock {
+        @apply overflow-y-hidden
     }
 
     svg {

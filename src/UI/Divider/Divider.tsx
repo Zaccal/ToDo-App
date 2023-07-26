@@ -1,6 +1,6 @@
-const Divider = () => {
+const Divider = ({className}: {className?: string}) => {
   return (
-    <div className="bg-muteDark w-full h-[1px]"></div>
+    <div className={`${className || ''} bg-muteDark w-full h-[1px]`}></div>
   )
 }
 

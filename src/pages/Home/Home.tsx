@@ -1,9 +1,8 @@
 import LayoutContainer from "../../UI/LayoutContainer/LayoutContainer"
-import Sidebar from "../../commponents/Sidebar/Sidebar"
-import Clipboard from "../../commponents/Clipboard/Clipboard"
+import Sidebar from "../../modules/Sidebar/Sidebar"
+import Clipboard from "../../modules/Clipboard/Clipboard"
 
 const Home = () => {
-  // ml-[17px] my-[19px]
   const paddingY = window.innerWidth <= 1024 ? 0 : 19
   const marginX = window.innerWidth <= 1024 ? 0 : 17
 

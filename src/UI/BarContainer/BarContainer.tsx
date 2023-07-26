@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from "react"
-import { AiOutlineCloseCircle } from 'react-icons/ai'
 import classes from './BarContainer.module.css'
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 
 interface IBarContainer {
   children: ReactElement | ReactElement[],
@@ -42,7 +42,7 @@ const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMo
           <div className="flex justify-between items-center mb-5">
             <h3 className="font-bold text-2xl">{title}</h3>
             <button onClick={onClose} className="w-8 h-8">
-              <AiOutlineCloseCircle/>
+              <HighlightOffOutlinedIcon />
             </button>
           </div>
           {children}
