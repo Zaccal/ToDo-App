@@ -18,7 +18,6 @@ import {
     AddNewListModal,
     AddTagModal,
     ViewTagModal
-    
 } from "./SidebarImports";
 
 
