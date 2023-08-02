@@ -9,10 +9,16 @@ export default {
     extend: {
       colors: {
         'bgColor': '#f3f3f3',
+        'element': '#ffd43b',
         'main': '#848484',
-        'mute': '#eeeeee',
+        'mute': '#ebebeb',
         'muteDark': '#e1e1e1', 
-        'modalContainer': '#000000c4'
+        'modalContainer': '#000000c4',
+
+        // dark theme colors
+        'bgColorDark': '#252525',
+        'main': '#717171',
+        'elementDark': '#0351fa'
       },
       zIndex: {
         '1': '1',

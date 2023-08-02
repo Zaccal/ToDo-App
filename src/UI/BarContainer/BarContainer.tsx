@@ -38,7 +38,7 @@ const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMo
   if (isMobileMode) {
     return (
       <div onClick={onClose} className={rootClassesContainer.join(' ')}>
-        <div className={rootClassesMenu.join(' ')}>
+        <div className={`dark:bg-bgColorDark dark:text-white ${rootClassesMenu.join(' ')}`} onClick={event => event.stopPropagation()}>
           <div className="flex justify-between items-center mb-5">
             <h3 className="font-bold text-2xl">{title}</h3>
             <button onClick={onClose} className="w-8 h-8">
@@ -52,7 +52,7 @@ const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMo
   }
 
   return (
-    <div className="bg-bgColor rounded-2xl py-3 px-4 h-full relative">
+    <div className="bg-bgColor dark:bg-bgColorDark dark:text-white rounded-2xl py-3 px-4 h-full relative">
         <div className="flex justify-between items-center mb-5">
           <h3 className="font-bold text-2xl">{title}</h3>
           {subHeader}

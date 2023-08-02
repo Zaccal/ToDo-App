@@ -1,6 +1,5 @@
 import { TypeSetState } from "../../types/types/types"
 import ColorItem from "../ColorItem/ColorItem"
-import classes from './Color.module.css'
 
 export interface IColorData {
   color: string,
@@ -40,8 +39,8 @@ const Color = ({labelName, className, colors, colorsHandler, saveVarbaleColorHan
 
   return (
     <div className={className}>
-        {labelName && (<label htmlFor="color" className="text-sm">{labelName}</label>)} <br />
-        <div className={`${labelName ? 'mt-2' : ''} ${classes.container} flex`}>
+        {labelName && (<label htmlFor="color" className="text-sm dark:text-slate-200">{labelName}</label>)} <br />
+        <div className={`${labelName ? 'mt-2' : ''} flex flex-wrap`}>
           {
             colors.map(colorDate => {
               return (<ColorItem onClick={() => setActiveStatusColor(colorDate)} active={colorDate.active} color={colorDate.color} key={colorDate.id}/>)

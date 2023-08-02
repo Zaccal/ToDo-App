@@ -23,7 +23,7 @@ const defualtColorsDatas: IColorData[] = [
       id: 4
     },
     {
-      color: '#9d32a8',
+      color: '#e34cf2',
       active: false,
       id: 5,
     },

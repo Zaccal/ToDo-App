@@ -9,9 +9,7 @@ interface ITagButton {
 
 const TagButton = ({children, color, icon, onClick}: ITagButton) => {
   return (
-    <button onClick={onClick} style={{
-        backgroundColor: color ? color : '#e0e0e2'
-    }} className='text-sm text-[#4f4f50] font-bold rounded-lg inline-block px-3 py-1 cursor-pointer text-center'>
+    <button onClick={onClick} style={{backgroundColor: color ? color : '#e0e0e2'}} className='TagButton'>
         <div className="flex items-center">
             <div className="max-w-[16px] mr-1">
                 {icon}

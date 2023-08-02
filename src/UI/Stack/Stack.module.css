@@ -2,6 +2,6 @@
     @apply mr-2;
 }
 
-.stack div:nth-child(4n) {
+.stack > div {
     @apply mb-2;
 }

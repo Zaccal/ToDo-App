@@ -13,7 +13,7 @@ const List = ({title, children, className, titleSize = 14}: IList) => {
     <nav className={`${className || ''} w-full py-1 overflow-y-scroll ${classes.List}`}>
         <div style={{
           fontSize: `${titleSize}px`
-        }} className="text-main font-bold mb-3">{title?.toUpperCase()}</div>
+        }} className="text-main font-bold mb-3 dark:text-gray-500">{title?.toUpperCase()}</div>
         {children}
     </nav>
   )

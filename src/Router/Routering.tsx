@@ -1,21 +1,22 @@
 import { Route, Routes } from "react-router-dom"
-import { RoutesDate } from "./RoutesDate"
+import { RoutesData } from "./RoutesData"
+import Error from "../pages/Error/Error"
+import { useLocalStorageContext } from "../Providers/LocalStorageProvider/LocalStorageProvider"
+import Welcome from "../pages/Welcome/Welcome"
+import Home from "../pages/Home/Home"
 
 const Routering = () => {
-    const user = {
-        auth: true
-    }
+    const {firstVisit} = useLocalStorageContext()
 
     return (
         <Routes>
             {
-                RoutesDate.map(date => {
-                    if (date.auth && user.auth)
-                        return <Route key={date.id} path={date.path} element={<date.element />} />
-
-                    return undefined
+                RoutesData.map(data => {
+                    return <Route key={data.id} path={data.path} element={<data.element />} />
                 })
             }
+            <Route path="/" element={firstVisit ? <Welcome /> : <Home />}/>
+            <Route path="*" element={<Error />}/>
         </Routes>
     )
 }

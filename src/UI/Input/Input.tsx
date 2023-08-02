@@ -1,28 +1,56 @@
-import { InputHTMLAttributes, ReactElement, LegacyRef, forwardRef, CSSProperties } from "react"
+import { InputHTMLAttributes, ReactElement, LegacyRef, forwardRef } from "react";
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement> {
-    icon?: ReactElement,
-    classNameContainer?: string,
-    varaint?: 'empty' | 'outline'
-    labelName?: string,
+    icon?: ReactElement;
+    classNameContainer?: string;
+    varaint?: "empty" | "outline";
+    labelName?: string;
+    labelError?: boolean;
+    errorMessage?: string,
 }
 
 const Input = forwardRef((props: IInput, ref: LegacyRef<HTMLInputElement>) => {
-    const {icon, classNameContainer, className, labelName, varaint = 'outline', ...rest} = props
+    const {
+        icon,
+        classNameContainer,
+        className,
+        labelName,
+        labelError = false,
+        errorMessage,
+        varaint = "outline",
+        ...rest
+    } = props;
 
     return (
         <>
-            {labelName && <label htmlFor="CustomInput" className="text-sm">{labelName}</label>}
-            <div className={`${classNameContainer || ''} ${labelName ? 'mt-1' : ''} flex items-center  h-10 rounded-lg w-full ${varaint === 'outline' ? 'border-2' : ''} border-mute bg-transparent flex items-center justify-start`}>
+            {(labelName && !labelError) && (
+                <label htmlFor="CustomInput" className="text-sm dark:text-slate-200">
+                    {labelName}
+                </label>
+            )}
+            {
+                labelError && (
+                    <label className="text-red-400">
+                        {errorMessage}
+                    </label>
+                )
+            }
+            <div className={`${classNameContainer || ""} ${labelName ? "mt-1" : ""} ${varaint === "outline" ? "border-2" : ""} InputContainer`}>
                 {icon && (
-                    <div className="w-7 h-7 ml-2 text-main">
+                    <div className="w-7 h-7 ml-2 text-main dark:text-gray-500">
                         {icon}
                     </div>
                 )}
-                <input id="CustomInput" type="text" ref={ref} className={`${className || ''} pl-3 h-full w-full placeholder:text-main focus:outline-none bg-transparent`} {...rest} />
+                <input
+                    id="CustomInput"
+                    type="text"
+                    ref={ref}
+                    className={`${className || ""} Input`}
+                    {...rest}
+                />
             </div>
         </>
-    )
-})
+    );
+});
 
-export default Input
+export default Input;

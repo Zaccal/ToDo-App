@@ -1,14 +1,13 @@
 import { StrictMode } from 'react'
-import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Routering from './Router/Routering'
-import LocalStorageProvider from './Providers/LocalStorage/LocalStorageProvider'
+import Providers from './Providers/Providers/Providers'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <Providers>
       <Routering />
-    </BrowserRouter>
+    </Providers>
   </StrictMode>,
 )

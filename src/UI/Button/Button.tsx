@@ -14,43 +14,27 @@ interface IButton {
 const Button = ({children, icon, onClick, variant, className, isLink, to}: IButton) => {    
     const content = (
         <div className="flex">
-            <div className="w-5 h-5 mr-3">
-                {icon}
-            </div>
+            {icon && (
+                <div className="w-5 h-5 mr-3">
+                    {icon}
+                </div>
+            )}
             {children}
         </div>
     )
 
-    const getStylesVariant = (): CSSProperties | undefined => {
+    const getStylesVariant = ():  string => {
         switch (variant) {
-            case 'text': return {
-                padding: '8px 12px'
-            }
-            case 'contained': return {
-                backgroundColor: '#ffd43b',
-                borderRadius: '8px',
-                width: '100%',
-                fontWeight: '700',
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '12px 8px',
-            }
-            case 'outline': return {
-                borderRadius: '8px',
-                width: '100%',
-                fontWeight: '700',
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '12px 8px',
-                border: '1px solid #e6e6e6'
-            }
+            case 'text': return 'button-text'
+            case 'contained': return 'button-contained'
+            case 'outline': return 'button-outline'
         }
 
-        return undefined
+        return ''
     }
     
     return (
-        <button style={getStylesVariant()} onClick={onClick} className={`text-[#26292c] ${className || ''} transition-all flex`}>
+        <button onClick={onClick} className={`${className || ''} ${getStylesVariant()} button`}>
             {
                 isLink && (
                     <Link to={to || ''}>

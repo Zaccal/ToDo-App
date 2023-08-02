@@ -11,7 +11,7 @@ interface IListItem {
 
 const ListItem = ({primary, icon, messageCount, active, onClick, className}: IListItem) => {
   return (
-    <div onClick={onClick} className={`${className || ''} transition-all cursor-pointer flex justify-between items-center w-ful px-3 py-2 rounded-lg text-sm font-bold hover:bg-mute hover:text-black ${active ? 'bg-mute text-black' : 'text-main'}`}>
+    <div onClick={onClick} className={`${className || ''} ${active ? 'dark:bg-gray-400 bg-mute dark:text-slate-900 text-black' : 'text-main dark:text-gray-400'} ListItem`}>
         <div className="flex items-center justify-start">
             {icon && (
                 <div className=" mr-2">
@@ -22,7 +22,7 @@ const ListItem = ({primary, icon, messageCount, active, onClick, className}: ILi
         </div>
         {
             messageCount ? (
-                <div className={`text-sm text-black rounded-lg px-3 py-[2px] transition-all ${active ? 'bg-white' : 'bg-muteDark'}`}>
+                <div className={`${active ? 'bg-white' : 'bg-muteDark'} Message`}>
                     {messageCount}
                 </div>
             ) : undefined

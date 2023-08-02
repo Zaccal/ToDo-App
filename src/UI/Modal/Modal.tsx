@@ -2,7 +2,7 @@ import { MouseEventHandler, ReactElement, useEffect, useState } from "react"
 import classes from './Modal.module.css'
 
 export interface IModal {
-    children?: ReactElement[] | ReactElement,
+    children?: ReactElement[] | ReactElement | string,
     isOpen: boolean,
     onClose: () => void,
     marginTopContent?: number,
@@ -11,7 +11,7 @@ export interface IModal {
 
 const Modal = ({isOpen, onClose, children, marginTopContent = 20, maxWidth = 646}: IModal) => {
     const [rootClassesContainer, setRootClassesContainer] = useState([classes.container, 'hidden', 'opacity-0'])
-    const [rootClassesContent, setRootClassesContent] = useState([classes.content, 'opacity-0'])
+    const [rootClassesContent, setRootClassesContent] = useState([classes.content, 'dark:bg-bgColorDark', 'opacity-0'])
 
     useEffect(() => {
         if (isOpen) {
