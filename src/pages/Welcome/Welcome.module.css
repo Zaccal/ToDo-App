@@ -1,0 +1,48 @@
+
+.headerContainer {
+    @apply flex flex-wrap justify-between items-center mx-auto max-w-screen-xl;
+}
+
+.logoText {
+    @apply self-center text-xl font-semibold whitespace-nowrap dark:text-white;
+}
+
+.navLink {
+    @apply text-gray-800 hover:bg-[#ffdf6b] bg-element focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 outline-none transition-all;
+}
+
+.nav {
+    @apply bg-gradient-to-r from-[#E9E4F0] from-10% to-[#f9f4be] to-100% px-4 lg:px-6 py-2.5;
+}
+
+.section {
+    @apply flex items-center pb-[120px] h-[93.8vh] justify-center bg-gradient-to-r from-[#E9E4F0] from-10% to-[#f9f4be] to-100%;
+}
+
+.container { 
+    @apply mx-auto px-2 md:max-w-[43rem] sm:max-w-[33rem] max-w-[25rem];
+}
+
+.onSubTitle {
+    @apply md:text-lg font-medium leading-8  text-[#ffc800];
+}
+
+.title {
+    @apply mt-3 md:text-[3.5rem] sm:text-5xl text-4xl font-bold md:leading-[4rem] sm:leading-[3rem] leading-[2.5rem] tracking-tight text-slate-900 dark:text-black;
+}
+
+.subtitle {
+    @apply mt-3 md:text-lg text-sm leading-relaxed text-gray-400 ;
+}
+
+.buttonContainer {
+    @apply mt-6 flex items-center justify-center gap-4;
+}
+
+.buttonContained {
+    @apply transform rounded-md flex items-center hover:bg-[#ffdf6b] bg-element sm:pr-3 sm:pl-5 sm:py-3 pr-2 py-2 pl-4 font-medium text-slate-900 transition-colors ;
+}
+
+.buttonOutline {
+    @apply transform rounded-md border flex items-center hover:bg-element hover:border-element border-gray-400  sm:px-5 sm:py-3 px-4 py-2 font-medium text-slate-900 hover:text-slate-900 transition-colors ;
+}

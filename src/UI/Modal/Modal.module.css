@@ -1,0 +1,7 @@
+.container {
+    @apply w-full transition-opacity h-screen z-1 backdrop-blur-sm bg-modalContainer fixed top-0 left-0;
+}
+
+.content {
+    @apply transition-opacity w-full px-6 shadow-xl py-4 rounded-lg bg-white;
+}
