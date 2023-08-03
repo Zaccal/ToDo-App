@@ -1,7 +1,9 @@
+import ClipboardListTitle from "../../components/ClipboardListTitle/ClipboardListTitle"
+
 const Clipboard = () => {
   return (
-    <div className="bg-red-500">
-      
+    <div>
+      <ClipboardListTitle />
     </div>
   )
 }
