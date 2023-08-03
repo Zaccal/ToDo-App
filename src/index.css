@@ -10,7 +10,7 @@
 
     body {
         font-family: 'Manrope', sans-serif;
-        @apply font-normal;
+        @apply font-normal text-[#212529];
         @apply bg-[#FAFAFA];
     }
 
@@ -49,7 +49,7 @@
     }
 
     .Input {
-        @apply pl-3 h-full w-full placeholder:text-main focus:outline-none bg-transparent dark:placeholder:text-gray-500;
+        @apply h-full w-full placeholder:text-main focus:outline-none bg-transparent dark:placeholder:text-gray-500;
     } 
 
     .ListItem {
