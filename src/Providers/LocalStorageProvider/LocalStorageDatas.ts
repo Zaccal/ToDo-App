@@ -57,7 +57,7 @@ export const ListsDatas: IList[] = [
         defualtIconColor: '#ff6b6b',
         message: 0,
         active: false,
-        accessEdit: false,
+        accessEdit: true,
         tasks: [],
         id: 5
     },
@@ -67,7 +67,7 @@ export const ListsDatas: IList[] = [
         defualtIconColor: '#67d9e8',
         message: 0,
         active: false,
-        accessEdit: false,
+        accessEdit: true,
         tasks: [],
         id: 6
     }
