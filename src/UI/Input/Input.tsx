@@ -45,7 +45,7 @@ const Input = forwardRef((props: IInput, ref: LegacyRef<HTMLInputElement>) => {
                     id="CustomInput"
                     type="text"
                     ref={ref}
-                    className={`${className || ""} Input`}
+                    className={`${className || ""} ${icon ? 'pl-3' : 'px-2'} dark:text-white Input`}
                     {...rest}
                 />
             </div>
