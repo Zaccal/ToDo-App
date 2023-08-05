@@ -3,6 +3,7 @@ import Checkbox from "../../UI/Checkbox/Checkbox";
 import { ITask } from "../../types/interfaces/Interfaces";
 import { TypeSetState } from "../../types/types/types";
 import TaskDetails from "../../UI/TaskDetails/TaskDetails";
+import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 
 type TypeTaskComponent = Omit<ITask, "decriptiton" | "tagsById" | 'fromListById' | 'subtasks'>;
 
@@ -16,7 +17,7 @@ const Task = ({name, date, fromList, isDone, subtasksCount, id, setIsDone}: ITas
     const [checkboxStatus, setCheckboxStatus] = useState(false);
 
     return (
-        <div className="flex justify-between items-center py-3 text-md font-md border-b-[1px] border-mute">
+        <div className="flex justify-between items-start py-4 text-md font-md border-b-[1px] border-mute">
             <div className="flex items-start">
                 <Checkbox
                     className="mr-3 mt-1"
@@ -29,6 +30,9 @@ const Task = ({name, date, fromList, isDone, subtasksCount, id, setIsDone}: ITas
                   </div>
                   <TaskDetails className="mt-[10px]" date={date} subtasksCount={subtasksCount} fromList={fromList} />
                 </div>
+            </div>
+            <div className="cursor-pointer">
+              <NavigateNextRoundedIcon />
             </div>
         </div>
     );
