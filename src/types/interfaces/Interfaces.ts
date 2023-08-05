@@ -2,8 +2,13 @@ import { EnumIconName } from "../enums/enums";
 
 export interface ITask {
     name: string,
-    color: string,
+    isDone: boolean,
+    decriptiton: string,
     readonly id: number,
+    date: string,
+    subtasks: Pick<ITask, 'name' | 'id' | 'isDone'>[],
+    fromListById: number,
+    tagsById: number[],
 }
 
 export interface IList {
@@ -14,7 +19,7 @@ export interface IList {
     message: number,
     active: boolean,
     readonly accessEdit: boolean, 
-    tasks: string[] // TODO: create task interface
+    tasks: ITask[]
 }
 
 export interface ISettings {

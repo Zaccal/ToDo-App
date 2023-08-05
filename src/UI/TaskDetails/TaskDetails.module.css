@@ -1,0 +1,3 @@
+.taskDetails > div + div {
+    @apply border-l-[1px] border-muteDark;
+} 
