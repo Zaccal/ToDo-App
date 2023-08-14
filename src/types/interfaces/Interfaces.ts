@@ -7,7 +7,7 @@ export interface ITask {
     readonly id: number,
     date: string,
     subtasks: Pick<ITask, 'name' | 'id' | 'isDone'>[],
-    fromListById: number,
+    fromList: string,
     tagsById: number[],
 }
 
@@ -16,7 +16,6 @@ export interface IList {
     name: string,
     readonly icon: EnumIconName,
     defualtIconColor?: string,
-    message: number,
     active: boolean,
     readonly accessEdit: boolean, 
     tasks: ITask[]

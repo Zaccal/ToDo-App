@@ -3,6 +3,7 @@ import MessageCountTitle from "../../UI/MessageCountTitle/MessageCountTitle";
 import useGetNowActiveList from "../../hooks/useGetNowActiveList";
 import Input from "../../UI/Input/Input";
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider";
+import { getListTaskDoneCount } from "../../utils/getListTaskDoneCount";
 
 interface IClipboardListTitle {
     className?: string
@@ -57,7 +58,7 @@ const ClipboardListTitle = ({className}: IClipboardListTitle) => {
                     className="font-black text-2xl text-center"
                 />
             )}
-            <MessageCountTitle className="ml-5" count={nowActiveList.message}/>
+            <MessageCountTitle className="ml-5" count={getListTaskDoneCount(nowActiveList.tasks)}/>
         </div>
     );
 };

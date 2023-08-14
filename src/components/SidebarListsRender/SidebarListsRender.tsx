@@ -1,6 +1,7 @@
 import ListItem from "../../UI/ListItem/ListItem"
 import { getListsIcon } from "./utils/getListIcon"
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider"
+import { getListTaskDoneCount } from "../../utils/getListTaskDoneCount"
 
 interface ISidebarListsRender {
   variant: 'user' | 'defualt'
@@ -35,7 +36,7 @@ const SidebarListsRender = ({variant}: ISidebarListsRender) => {
                   key={listData.id}
                   primary={listData.name}
                   icon={getListsIcon(listData.icon, listData.defualtIconColor)}
-                  messageCount={listData.message}
+                  messageCount={getListTaskDoneCount(listData.tasks)}
                   active={listData.active}
               />
           );
