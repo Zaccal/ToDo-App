@@ -6,24 +6,24 @@ import { TypeSetState } from "../../types/types/types";
 
 interface IDatePickerIcon {
     saveSelectedDate: Date | null;
-    setSaveSelectedDate: (date: string) => void | TypeSetState<Date | null>;
+    setSaveSelectedDate: TypeSetState<Date | null>;
 }
+
+export const formatDate = (gotDate: Date | null): string => {
+    if (!gotDate) return ''
+
+    const day = gotDate.getDate();
+    const month = gotDate.getMonth() + 1;
+    const year = gotDate.getFullYear();
+    return `${day}-${month}-${year}`;
+};
 
 const DatePickerIcon = ({saveSelectedDate, setSaveSelectedDate}: IDatePickerIcon) => {
     const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
 
-    const formatDate = (gotDate: Date | null): string => {
-        if (!gotDate) return ''
-
-        const day = gotDate.getDate();
-        const month = gotDate.getMonth() + 1;
-        const year = gotDate.getFullYear();
-        return `${day}-${month}-${year}`;
-    };
-
     const handleDateChange = (selectDate: Date | null) => {
         setShowDatePicker(false);
-        setSaveSelectedDate(formatDate(selectDate));
+        setSaveSelectedDate(selectDate);
     };
 
     return (

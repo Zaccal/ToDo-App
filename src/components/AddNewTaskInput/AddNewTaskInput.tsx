@@ -1,12 +1,13 @@
-import { useState, KeyboardEvent } from 'react'
+import { useState, useEffect, KeyboardEvent } from 'react'
 import Input from "../../UI/Input/Input";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { ITask } from '../../types/interfaces/Interfaces';
 import useGetNowActiveList from '../../hooks/useGetNowActiveList';
-import DatePickerIcon from '../../UI/DatePickerIcon/DatePickerIcon';
+import DatePickerIcon, { formatDate } from '../../UI/DatePickerIcon/DatePickerIcon';
 
 const AddNewTaskInput = () => {
     const {name} = useGetNowActiveList()
+    const [pickedDate, setPickedDate] = useState<Date | null>(null)
     const [newTaskData, setNewTaskData] = useState<ITask>({
         name: '',
         decriptiton: '',
@@ -18,10 +19,17 @@ const AddNewTaskInput = () => {
         tagsById: []
     })
 
-    const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {   
-        console.log(newTaskData);
-                     
-        if (event.key === 'Enter') {
+    useEffect(() => {
+        setNewTaskData(prev => {
+            return {
+                ...prev,
+                date: formatDate(pickedDate)
+            }
+        })
+    }, [pickedDate])
+
+    const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {                        
+        if (event.key === 'Enter') {                        
             return
         }
     }
@@ -38,8 +46,8 @@ const AddNewTaskInput = () => {
                 subheader={
                     <>
                         <DatePickerIcon 
-                            saveSelectedDate={null} 
-                            setSaveSelectedDate={(date: string) => setNewTaskData({...newTaskData, date: date})}/>
+                            saveSelectedDate={pickedDate} 
+                            setSaveSelectedDate={setPickedDate}/>
                     </>
                 }
             />
