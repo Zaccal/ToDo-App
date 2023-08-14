@@ -1,13 +1,12 @@
 import { useState, KeyboardEvent } from 'react'
 import Input from "../../UI/Input/Input";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import TodayRoundedIcon from "@mui/icons-material/TodayRounded";
 import { ITask } from '../../types/interfaces/Interfaces';
 import useGetNowActiveList from '../../hooks/useGetNowActiveList';
+import DatePickerIcon from '../../UI/DatePickerIcon/DatePickerIcon';
 
 const AddNewTaskInput = () => {
-    const {name, id} = useGetNowActiveList()
-
+    const {name} = useGetNowActiveList()
     const [newTaskData, setNewTaskData] = useState<ITask>({
         name: '',
         decriptiton: '',
@@ -19,7 +18,9 @@ const AddNewTaskInput = () => {
         tagsById: []
     })
 
-    const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {   
+        console.log(newTaskData);
+                     
         if (event.key === 'Enter') {
             return
         }
@@ -36,7 +37,9 @@ const AddNewTaskInput = () => {
                 className="pl-2"
                 subheader={
                     <>
-                        <TodayRoundedIcon className='dark:text-gray-500'/>
+                        <DatePickerIcon 
+                            saveSelectedDate={null} 
+                            setSaveSelectedDate={(date: string) => setNewTaskData({...newTaskData, date: date})}/>
                     </>
                 }
             />
