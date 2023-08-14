@@ -1,3 +1,7 @@
 .taskDetails > div + div {
     @apply border-l-[1px] border-muteDark;
 } 
+
+.taskDetails > div:first-child {
+    @apply pl-0;
+}

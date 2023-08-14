@@ -7,6 +7,7 @@ interface IInput extends InputHTMLAttributes<HTMLInputElement> {
     labelName?: string;
     labelError?: boolean;
     errorMessage?: string,
+    subheader?: ReactElement | string,
 }
 
 const Input = forwardRef((props: IInput, ref: LegacyRef<HTMLInputElement>) => {
@@ -17,6 +18,7 @@ const Input = forwardRef((props: IInput, ref: LegacyRef<HTMLInputElement>) => {
         labelName,
         labelError = false,
         errorMessage,
+        subheader,
         varaint = "outline",
         ...rest
     } = props;
@@ -48,6 +50,9 @@ const Input = forwardRef((props: IInput, ref: LegacyRef<HTMLInputElement>) => {
                     className={`${className || ""} ${icon ? 'pl-3' : 'px-2'} dark:text-white Input`}
                     {...rest}
                 />
+                <div className="cursor-pointer">
+                    {subheader}
+                </div>
             </div>
         </>
     );

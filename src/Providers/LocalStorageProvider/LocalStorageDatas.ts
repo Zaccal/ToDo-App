@@ -30,7 +30,28 @@ export const ListsDatas: IList[] = [
         message: 2,
         active: true,
         accessEdit: false,
-        tasks: [],
+        tasks: [
+            {
+                name: 'Put an asterisk above the repository of this project',
+                date: '',
+                decriptiton: '',
+                fromList: 'Today',
+                id: 1,
+                isDone: false,
+                subtasks: [],
+                tagsById: []
+            },
+            {
+                name: 'Get acquainted with the project',
+                date: '',
+                decriptiton: '',
+                fromList: 'Today',
+                id: 2,
+                isDone: false,
+                subtasks: [],
+                tagsById: []
+            }
+        ],
         id: 2
     },
     {

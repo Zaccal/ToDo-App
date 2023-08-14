@@ -4,7 +4,7 @@ import classes from "./TaskDetails.module.css";
 
 interface ITaskDetails {
     date?: string;
-    subtasksCount?: number;
+    subtasksCount: number;
     fromList?: string;
     defualtListColor?: string;
     className?: string;
@@ -20,21 +20,21 @@ const TaskDetails = ({date, subtasksCount, fromList, defualtListColor, className
             } flex justify-between items-center h-5`}
         >
             {date && (
-                <div className="dark:text-white flex items-center text-sm pr-3">
-                    <EventBusyRoundedIcon style={{ color: "gray" }} />
+                <div className="dark:text-white flex items-center text-sm px-3">
+                    <EventBusyRoundedIcon className="dark:text-gray-500" />
                     <span className="ml-2">{date}</span>
                 </div>
             )}
-            {subtasksCount && (
-                <div className="dark:text-white flex items-center text-sm px-3 ">
+            {subtasksCount > 0 ? (
+                <div className="dark:text-white flex items-center text-sm px-3">
                     <div className="bg-mute px-3 py-[1px] dark:bg-gray-500 rounded-lg">
                         {subtasksCount}
                     </div>
                     <span className="ml-2">Subtasks</span>
                 </div>
-            )}
-            {fromList && (
-                <div className="dark:text-white flex items-center text-sm px-3">
+            ) : undefined}
+            {fromList ? (
+                <div className="dark:text-white flex items-center text-sm px-3 mt-0">
                     {defualtListColor ? (
                         <div
                             style={{ backgroundColor: defualtListColor }}
@@ -45,7 +45,7 @@ const TaskDetails = ({date, subtasksCount, fromList, defualtListColor, className
                     )}
                     <span className="ml-2">{fromList}</span>
                 </div>
-            )}
+            ) : undefined}
         </div>
     );
 };
