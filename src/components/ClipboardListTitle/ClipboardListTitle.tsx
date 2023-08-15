@@ -3,7 +3,7 @@ import MessageCountTitle from "../../UI/MessageCountTitle/MessageCountTitle";
 import useGetNowActiveList from "../../hooks/useGetNowActiveList";
 import Input from "../../UI/Input/Input";
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider";
-import { getListTaskDoneCount } from "../../utils/getListTaskDoneCount";
+import { getListTaskDoneCount } from "../../utils/utils";
 
 interface IClipboardListTitle {
     className?: string

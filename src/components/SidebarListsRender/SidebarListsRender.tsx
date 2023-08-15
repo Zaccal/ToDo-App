@@ -1,7 +1,7 @@
 import ListItem from "../../UI/ListItem/ListItem"
 import { getListsIcon } from "./utils/getListIcon"
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider"
-import { getListTaskDoneCount } from "../../utils/getListTaskDoneCount"
+import { getListTaskDoneCount } from "../../utils/utils"
 
 interface ISidebarListsRender {
   variant: 'user' | 'defualt'

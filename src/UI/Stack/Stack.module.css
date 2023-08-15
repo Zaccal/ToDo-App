@@ -1,7 +1,0 @@
-.stack div + div {
-    @apply mr-2;
-}
-
-.stack > div {
-    @apply mb-2;
-}

@@ -84,4 +84,8 @@
         color: gray !important; 
         @apply line-through;
     }
+
+    .Chip {
+        @apply w-max my-[5px] flex h-[28px] cursor-pointer items-center justify-between rounded-[16px] border bg-[#eceff1] bg-[transparent] px-[12px] py-0 text-[13px] font-normal normal-case leading-loose shadow-none;
+    }
 }

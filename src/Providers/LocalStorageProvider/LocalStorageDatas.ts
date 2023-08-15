@@ -18,7 +18,6 @@ export const ListsDatas: IList[] = [
     {
         name: 'Upcoming',
         icon: EnumIconName.keyboardDoubleArrowRight,
-        message: 0,
         active: false,
         accessEdit: false,
         tasks: [],
@@ -27,7 +26,6 @@ export const ListsDatas: IList[] = [
     {
         name: 'Today',
         icon: EnumIconName.clipboard,
-        message: 2,
         active: true,
         accessEdit: false,
         tasks: [
@@ -39,7 +37,7 @@ export const ListsDatas: IList[] = [
                 id: 1,
                 isDone: false,
                 subtasks: [],
-                tagsById: []
+                tags: []
             },
             {
                 name: 'Get acquainted with the project',
@@ -49,7 +47,7 @@ export const ListsDatas: IList[] = [
                 id: 2,
                 isDone: false,
                 subtasks: [],
-                tagsById: []
+                tags: []
             }
         ],
         id: 2
@@ -57,7 +55,6 @@ export const ListsDatas: IList[] = [
     {
         name: 'Calendar',
         icon: EnumIconName.calenderar,
-        message: 0,
         active: false,
         accessEdit: false,
         tasks: [],
@@ -66,7 +63,6 @@ export const ListsDatas: IList[] = [
     {
         name: 'Important',
         icon: EnumIconName.star,
-        message: 0,
         active: false,
         accessEdit: false,
         tasks: [],
@@ -76,7 +72,6 @@ export const ListsDatas: IList[] = [
         name: 'Personal',
         icon: EnumIconName.defualtIcon,
         defualtIconColor: '#ff6b6b',
-        message: 0,
         active: false,
         accessEdit: true,
         tasks: [],
@@ -86,7 +81,6 @@ export const ListsDatas: IList[] = [
         name: 'Work',
         icon: EnumIconName.defualtIcon,
         defualtIconColor: '#67d9e8',
-        message: 0,
         active: false,
         accessEdit: true,
         tasks: [],

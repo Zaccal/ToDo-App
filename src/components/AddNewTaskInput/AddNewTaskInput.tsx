@@ -1,9 +1,11 @@
 import { useState, useEffect, KeyboardEvent } from 'react'
 import Input from "../../UI/Input/Input";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { ITask } from '../../types/interfaces/Interfaces';
+import { ITag, ITask } from '../../types/interfaces/Interfaces';
 import useGetNowActiveList from '../../hooks/useGetNowActiveList';
-import DatePickerIcon, { formatDate } from '../../UI/DatePickerIcon/DatePickerIcon';
+import DatePickerIcon from '../../UI/DatePickerIcon/DatePickerIcon';
+import { formatDate } from '../../utils/utils';
+import TagPicker from '../TagPicker/TagPicker';
 
 const AddNewTaskInput = () => {
     const {name} = useGetNowActiveList()
@@ -16,7 +18,7 @@ const AddNewTaskInput = () => {
         id: Date.now(),
         isDone: false,
         subtasks: [],
-        tagsById: []
+        tags: []
     })
 
     useEffect(() => {
@@ -27,6 +29,10 @@ const AddNewTaskInput = () => {
             }
         })
     }, [pickedDate])
+
+    const pickTagHandler = (newValue: ITag[]) => {
+        setNewTaskData({...newTaskData, tags: newValue})
+    }
 
     const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {                        
         if (event.key === 'Enter') {                        
@@ -44,11 +50,12 @@ const AddNewTaskInput = () => {
                 classNameContainer="px-3 h-12"
                 className="pl-2"
                 subheader={
-                    <>
+                    <div className='flex'>
+                        <TagPicker setPickedTags={pickTagHandler} pickedTags={newTaskData.tags} className='mr-2'/>
                         <DatePickerIcon 
                             saveSelectedDate={pickedDate} 
                             setSaveSelectedDate={setPickedDate}/>
-                    </>
+                    </div>
                 }
             />
         </>

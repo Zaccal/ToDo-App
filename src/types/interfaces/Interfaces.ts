@@ -8,7 +8,7 @@ export interface ITask {
     date: string,
     subtasks: Pick<ITask, 'name' | 'id' | 'isDone'>[],
     fromList: string,
-    tagsById: number[],
+    tags: ITag[],
 }
 
 export interface IList {
