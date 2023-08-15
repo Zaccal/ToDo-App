@@ -22,9 +22,9 @@ const TagPicker = ({ className, pickedTags, setPickedTags }: ITagPicker) => {
             </div>
             <Modal isOpen={isOpen} onClose={isOpenHandler}>
                 <>
-                    <div className="dark:bg-main rounded-lg h-10 flex items-center px-3">
+                    <div className="border-2 dark:border-0 dark:bg-main rounded-lg h-10 flex items-center px-3">
                         {pickedTags.length ? (
-                            pickedTags.map((pickedTagData) => {
+                            pickedTags.map(pickedTagData => {
                                 return (
                                     <Chip
                                         className="mr-2"
