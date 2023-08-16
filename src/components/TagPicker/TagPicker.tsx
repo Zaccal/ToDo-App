@@ -18,7 +18,9 @@ const TagPicker = ({ className, pickedTags, setPickedTags }: ITagPicker) => {
     return (
         <div className={`${className || ""}`}>
             <div onClick={() => setIsOpen(true)}>
-                <LocalOfferRoundedIcon className="dark:text-gray-500" />
+                <LocalOfferRoundedIcon style={{
+                    color: pickedTags.length ? '#ffd43b' : '#e1e1e1'
+                }} className="dark:text-gray-500" />
             </div>
             <Modal isOpen={isOpen} onClose={isOpenHandler}>
                 <>

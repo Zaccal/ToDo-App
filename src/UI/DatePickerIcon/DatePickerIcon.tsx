@@ -21,7 +21,9 @@ const DatePickerIcon = ({saveSelectedDate, setSaveSelectedDate}: IDatePickerIcon
     return (
         <>
             <button onClick={() => setShowDatePicker(!showDatePicker)}>
-                <TodayRoundedIcon className="dark:text-gray-500" />
+                <TodayRoundedIcon style={{
+                    color: saveSelectedDate !== null ? '#ffd43b' : '#e1e1e1'
+                }} className="text-muteDark dark:text-gray-500" />
             </button>
             {showDatePicker && (
                 <DatePicker
