@@ -16,16 +16,12 @@ const Task = ({name, date, fromList, isDone, subtasksCount, id, setIsDone}: ITas
     return (
         <div className="flex justify-between items-start py-4 text-md font-md border-b-[1px] border-mute">
             <div className="flex items-start">
-                <Checkbox
-                    className="mr-3 mt-1"
-                    checked={isDone}
-                    setCheck={setIsDone}
-                />
-                <div className="flex flex-col justify-start items-start">
+                <Checkbox className="mt-[6px]" checked={isDone} setCheck={setIsDone} />
+                <div className="flex pl-3 flex-col justify-start items-start">
                   <div className={`CheckboxText ${isDone ? "CheckboxChekedText" : ""}`}>
-                    <span className="block">{name}</span>
+                    <span className="text-sm md:text-[15px]">{name}</span>
                   </div>
-                  <TaskDetails className="mt-[7px]" date={date} subtasksCount={subtasksCount} fromList={fromList} />
+                  <TaskDetails className="mt-3 md:mt-[7px]" date={date} subtasksCount={subtasksCount} fromList={fromList} />
                 </div>
             </div>
             <div className="cursor-pointer">

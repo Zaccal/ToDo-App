@@ -15,18 +15,16 @@ const TaskDetails = ({date, subtasksCount, fromList, defualtListColor, className
     
     return (
         <div
-            className={`${classes.taskDetails} ${
-                className || ""
-            } flex justify-between items-center h-5`}
+            className={`${classes.taskDetails} flex ${className || ''} justify-between items-center h-5`}
         >
             {date && (
-                <div className="dark:text-white flex items-center text-sm px-3">
+                <div className="mt-[4px] dark:text-white flex items-center text-sm px-3">
                     <EventBusyRoundedIcon className="dark:text-gray-500" />
                     <span className="ml-2">{date}</span>
                 </div>
             )}
             {subtasksCount > 0 ? (
-                <div className="dark:text-white flex items-center text-sm px-3">
+                <div className="dark:text-white mt-[4px] flex items-center text-sm px-3">
                     <div className="bg-mute px-3 py-[1px] dark:bg-gray-500 rounded-lg">
                         {subtasksCount}
                     </div>
@@ -34,7 +32,7 @@ const TaskDetails = ({date, subtasksCount, fromList, defualtListColor, className
                 </div>
             ) : undefined}
             {fromList ? (
-                <div className="dark:text-white flex items-center text-sm px-3 mt-0">
+                <div className="dark:text-white mt-[4px] flex items-center text-sm px-3">
                     {defualtListColor ? (
                         <div
                             style={{ backgroundColor: defualtListColor }}

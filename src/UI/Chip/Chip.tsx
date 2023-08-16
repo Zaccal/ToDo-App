@@ -1,5 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { darkenColor } from "../../utils/utils";
+import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider";
 
 interface IChip {
     name: string;
@@ -11,9 +12,9 @@ interface IChip {
 }
 
 const Chip = ({name, color, onRemoveButton, className, onClick, closeButton = true}: IChip) => {
-    const isDarkMode = document.querySelector('body')?.className === 'dark' ? true : false
-    
-  
+    const {settingsStore} = useLocalStorageContext()    
+    const isDarkMode = settingsStore.theme === 'dark' ? true : false
+
     return (
         <div
             style={{

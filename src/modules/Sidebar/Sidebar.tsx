@@ -36,7 +36,7 @@ const Sidebar = () => {
     }
 
     return (
-        <BarContainer isOpen={true} isMobileMode={isScreenMd} title="Menu">
+        <BarContainer isOpen={false} isMobileMode={isScreenMd} title="Menu">
             <div className="h-[85vh] relative overflow-y-scroll">
                 <Input 
                     ref={inputSearchRef} 
