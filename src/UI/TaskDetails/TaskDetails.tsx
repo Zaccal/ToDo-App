@@ -11,8 +11,9 @@ interface ITaskDetails {
 }
 
 const TaskDetails = ({date, subtasksCount, fromList, defualtListColor, className}: ITaskDetails) => {
-    if (!date && !subtasksCount && !fromList) return 
-    
+    if (!date && !subtasksCount && !fromList) return     
+    console.log(defualtListColor);
+
     return (
         <div
             className={`${classes.taskDetails} flex ${className || ''} justify-between items-center `}
@@ -36,12 +37,12 @@ const TaskDetails = ({date, subtasksCount, fromList, defualtListColor, className
                     {defualtListColor ? (
                         <div
                             style={{ backgroundColor: defualtListColor }}
-                            className="rounded-md w-5 h-5"
+                            className="rounded-md w-[17px] h-[17px] mr-3"
                         ></div>
                     ) : (
-                        <FormatListBulletedRoundedIcon style={{width: '23px', height: '23px'}} className="dark:text-gray-500" />
+                        <FormatListBulletedRoundedIcon style={{width: '23px', height: '23px'}} className="mr-1 dark:text-gray-500" />
                     )}
-                    <span className="ml-1">{fromList}</span>
+                    <span>{fromList}</span>
                 </div>
             ) : undefined}
         </div>

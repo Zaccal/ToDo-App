@@ -15,7 +15,7 @@ const AddNewTaskInput = () => {
         name: '',
         decriptiton: '',
         date: '',
-        fromList: name,
+        fromList: '',
         id: 0,
         isDone: false,
         subtasks: [],
@@ -45,7 +45,7 @@ const AddNewTaskInput = () => {
                 if (listData.id === nowActiveList.id) {
                     return {
                         ...listData,
-                        tasks: [...listData.tasks, {...newTaskData, id: Date.now()}]
+                        tasks: [...listData.tasks, {...newTaskData, id: Date.now(), fromList: name}]
                     }
                 }
     

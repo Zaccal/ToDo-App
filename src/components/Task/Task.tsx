@@ -5,7 +5,7 @@ import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import useGetNowActiveList from "../../hooks/useGetNowActiveList";
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider";
 
-type TypeTaskComponent = Omit<ITask, "decriptiton" | 'fromListById' | 'subtasks' | 'tags'>;
+type TypeTaskComponent = Omit<ITask, "decriptiton" | 'subtasks' | 'tags'>;
 
 interface ITaskComponent extends TypeTaskComponent {
   subtasksCount: number,
@@ -42,7 +42,7 @@ const Task = ({name, date, fromList, isDone, subtasksCount, id}: ITaskComponent)
                   <div className={`CheckboxText ${isDone ? "CheckboxChekedText" : ""}`}>
                     <span className="text-sm md:text-[16px]">{name}</span>
                   </div>
-                  <TaskDetails className="mt-2" date={date} subtasksCount={subtasksCount} fromList={fromList} />
+                  <TaskDetails className="mt-2" defualtListColor={nowActiveList.defualtIconColor} date={date} subtasksCount={subtasksCount} fromList={fromList} />
                 </div>
             </div>
             <div className="cursor-pointer">
