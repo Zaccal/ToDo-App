@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodayRoundedIcon from "@mui/icons-material/TodayRounded";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TypeSetState } from "../../types/types/types";
+import useGetNowActiveList from "../../hooks/useGetNowActiveList";
+import { formatDate } from "../../utils/utils";
 
 interface IDatePickerIcon {
     className?: string,
@@ -12,11 +14,23 @@ interface IDatePickerIcon {
 
 const DatePickerIcon = ({saveSelectedDate, setSaveSelectedDate}: IDatePickerIcon) => {
     const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
+    const nowActiveList = useGetNowActiveList()
 
     const handleDateChange = (selectDate: Date | null) => {
         setShowDatePicker(false);
         setSaveSelectedDate(selectDate);
     };
+
+    useEffect(() => {
+        setSaveSelectedDate(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [nowActiveList])
+
+    useEffect(() => {
+        const today = formatDate(new Date())
+        if (today === formatDate(saveSelectedDate)) setSaveSelectedDate(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [saveSelectedDate])
 
     return (
         <>
