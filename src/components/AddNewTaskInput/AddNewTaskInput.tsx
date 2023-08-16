@@ -6,6 +6,7 @@ import useGetNowActiveList from '../../hooks/useGetNowActiveList';
 import DatePickerIcon from '../../UI/DatePickerIcon/DatePickerIcon';
 import { formatDate } from '../../utils/utils';
 import TagPicker from '../TagPicker/TagPicker';
+import { useLocalStorageContext } from '../../Providers/LocalStorageProvider/LocalStorageProvider';
 
 const AddNewTaskInput = () => {
     const {name} = useGetNowActiveList()
@@ -15,11 +16,13 @@ const AddNewTaskInput = () => {
         decriptiton: '',
         date: '',
         fromList: name,
-        id: Date.now(),
+        id: 0,
         isDone: false,
         subtasks: [],
         tags: []
     })
+    const {listsStore, setListsStore} = useLocalStorageContext()
+    const nowActiveList = useGetNowActiveList()
 
     useEffect(() => {
         setNewTaskData(prev => {
@@ -35,8 +38,19 @@ const AddNewTaskInput = () => {
     }
 
     const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {                        
-        if (event.key === 'Enter') {                        
-            return
+        if (event.key === 'Enter' && event.currentTarget.value.length) {  
+            setNewTaskData({...newTaskData, name: ''})
+            
+            setListsStore(listsStore.map(listData => {
+                if (listData.id === nowActiveList.id) {
+                    return {
+                        ...listData,
+                        tasks: [...listData.tasks, {...newTaskData, id: Date.now()}]
+                    }
+                }
+    
+                return listData
+            }))            
         }
     }
 
@@ -44,6 +58,7 @@ const AddNewTaskInput = () => {
         <>
             <Input
                 icon={<AddRoundedIcon />}
+                value={newTaskData.name}
                 onChange={event => setNewTaskData({...newTaskData, name: event.target.value})}
                 onKeyUp={event => addNewTaskHandler(event)}
                 placeholder="Add New Task"
