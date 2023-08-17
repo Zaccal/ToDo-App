@@ -12,7 +12,7 @@ interface ITaskComponent extends TypeTaskComponent {
   subtasksCount: number,
   fromList: string,
   isButtonAboutTask?: boolean, 
-  name: string | ReactElement
+  name: string
 }
 
 const Task = ({name, date, fromList, isDone, subtasksCount, id, isButtonAboutTask = true}: ITaskComponent) => {
