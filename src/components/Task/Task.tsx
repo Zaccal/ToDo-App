@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import Checkbox from "../../UI/Checkbox/Checkbox";
 import { ITask } from "../../types/interfaces/Interfaces";
 import TaskDetails from "../../UI/TaskDetails/TaskDetails";
@@ -5,12 +6,13 @@ import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import useGetNowActiveList from "../../hooks/useGetNowActiveList";
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider";
 
-type TypeTaskComponent = Omit<ITask, "decriptiton" | 'subtasks' | 'tags'>;
+type TypeTaskComponent = Omit<ITask, "decriptiton" | 'subtasks' | 'tags' | 'name'>;
 
 interface ITaskComponent extends TypeTaskComponent {
   subtasksCount: number,
   fromList: string,
   isButtonAboutTask?: boolean, 
+  name: string | ReactElement
 }
 
 const Task = ({name, date, fromList, isDone, subtasksCount, id, isButtonAboutTask = true}: ITaskComponent) => {

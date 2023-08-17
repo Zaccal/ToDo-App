@@ -19,6 +19,7 @@ const TagPicker = ({ className, pickedTags, setPickedTags }: ITagPicker) => {
 
     useEffect(() => {
         setPickedTags([])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [nowActiveList])
 
     return (

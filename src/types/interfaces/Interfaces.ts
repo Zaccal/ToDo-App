@@ -1,5 +1,4 @@
 import { EnumIconName } from "../enums/enums";
-
 export interface ITask {
     name: string,
     isDone: boolean,
