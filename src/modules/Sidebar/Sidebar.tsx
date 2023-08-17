@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useInView } from 'react-intersection-observer'
 import {
     BarContainer,
     Input,
@@ -29,7 +30,10 @@ const Sidebar = () => {
         isAddTagModalVisible: false,
         isAddListModalVisible: false
     })
-
+    const {ref, inView} = useInView({
+        threshold: 0.3,
+    })
+        
     const openSearchModalHandler = () => {
         inputSearchRef.current?.blur()
         setModalsVisible({...modalsVisble, isSearchModalVisible: true})
@@ -66,12 +70,15 @@ const Sidebar = () => {
                         Add Tag
                     </TagButton>
                 </Stack>
+                <div ref={ref} className="h-14 w-full"></div>
             </div>
             <BarFooter>
                 <div className="px-4">
-                    <Button className="text-sm lg:pb-2 pb-0" isLink to="/settings" variant="text" icon={<TuneIcon />}>
-                        Settings
-                    </Button>
+                    <div className={`${inView ? 'border-t-0' : 'border-t-[1px]' } dark:border-gray-400`}>
+                        <Button className="text-sm lg:pb-2 pb-0" isLink to="/settings" variant="text" icon={<TuneIcon />}>
+                            Settings
+                        </Button>
+                    </div>
                 </div>
             </BarFooter>
             <SearchModal 
