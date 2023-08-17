@@ -43,7 +43,9 @@ const ClipboardListTitle = ({className}: IClipboardListTitle) => {
     return (
         <div onClick={switchEditModeHandler} className={`${className || ''} flex items-center`}>
             {!editMode && (
-                <h1 className="text-5xl font-black dark:text-white">
+                <h1 style={{
+                    cursor: nowActiveList.accessEdit ? 'pointer' : 'auto', 
+                }} className="text-5xl font-black dark:text-white">
                     {nowActiveList.name}
                 </h1>
             )}
