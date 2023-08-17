@@ -12,7 +12,6 @@ interface ITaskDetails {
 
 const TaskDetails = ({date, subtasksCount, fromList, defualtListColor, className}: ITaskDetails) => {
     if (!date && !subtasksCount && !fromList) return     
-    console.log(defualtListColor);
 
     return (
         <div

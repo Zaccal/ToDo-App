@@ -10,9 +10,10 @@ type TypeTaskComponent = Omit<ITask, "decriptiton" | 'subtasks' | 'tags'>;
 interface ITaskComponent extends TypeTaskComponent {
   subtasksCount: number,
   fromList: string,
+  isButtonAboutTask?: boolean, 
 }
 
-const Task = ({name, date, fromList, isDone, subtasksCount, id}: ITaskComponent) => {
+const Task = ({name, date, fromList, isDone, subtasksCount, id, isButtonAboutTask = true}: ITaskComponent) => {
     const nowActiveList = useGetNowActiveList()
     const {setListsStore, listsStore} = useLocalStorageContext() 
     const isDoneHandler = () => {
@@ -33,6 +34,17 @@ const Task = ({name, date, fromList, isDone, subtasksCount, id}: ITaskComponent)
         return listData
       }))
     }
+    const findDefualtColor = (listName: string): string => {
+      let result = ''
+      
+      listsStore.forEach(listData => {
+        if (listData.name === listName && listData.defualtIconColor) {
+          result = listData.defualtIconColor 
+        }
+      })
+
+      return result
+    }
 
     return (
         <div className="flex justify-between items-start py-4 text-md font-md border-b-[1px] border-mute">
@@ -42,12 +54,14 @@ const Task = ({name, date, fromList, isDone, subtasksCount, id}: ITaskComponent)
                   <div className={`CheckboxText ${isDone ? "CheckboxChekedText" : ""}`}>
                     <span className="text-sm md:text-[16px]">{name}</span>
                   </div>
-                  <TaskDetails className="mt-2" defualtListColor={nowActiveList.defualtIconColor} date={date} subtasksCount={subtasksCount} fromList={fromList} />
+                  <TaskDetails className="mt-[8px]" defualtListColor={findDefualtColor(fromList)} date={date} subtasksCount={subtasksCount} fromList={nowActiveList.name === fromList ? undefined : fromList} />
                 </div>
             </div>
-            <div className="cursor-pointer">
-              <NavigateNextRoundedIcon className="dark:text-white"/>
-            </div>
+            {isButtonAboutTask && (
+              <div className="cursor-pointer">
+                <NavigateNextRoundedIcon className="dark:text-white"/>
+              </div>
+            )}
         </div>
     );
 };

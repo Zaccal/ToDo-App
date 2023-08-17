@@ -5,15 +5,18 @@ interface IList {
     title?: string,
     children?: ReactElement[] | ReactElement
     className?: string,
-    titleSize?: number
+    titleSize?: number,
+    gapListItems?: boolean,
 }
 
-const List = ({title, children, className, titleSize = 14}: IList) => {
+const List = ({title, children, className, titleSize = 14, gapListItems = true}: IList) => {
   return (
-    <nav className={`${className || ''} w-full py-1 overflow-y-scroll ${classes.List}`}>
-        <div style={{
-          fontSize: `${titleSize}px`
-        }} className="text-main font-bold mb-3 dark:text-gray-500">{title?.toUpperCase()}</div>
+    <nav className={`${className || ''} w-full py-1 overflow-y-scroll ${gapListItems ? classes.List : ''}`}>
+        {title && (
+          <div style={{
+            fontSize: `${titleSize}px`
+          }} className="text-main font-bold mb-3 dark:text-gray-500">{title.toUpperCase()}</div>
+        )}
         {children}
     </nav>
   )
