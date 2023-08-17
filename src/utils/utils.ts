@@ -13,8 +13,8 @@ export const getListTaskDoneCount = (tasks: ITask[]) => {
 export const formatDate = (gotDate: Date | null): string => {
     if (!gotDate) return ''
 
-    const day = gotDate.getDate();
-    const month = gotDate.getMonth() + 1;
+    const day = gotDate.getDate() > 9 ? `0${gotDate.getDate()}` : gotDate.getDate();
+    const month = (gotDate.getMonth() + 1) > 9 ? `0${gotDate.getMonth() + 1}` : gotDate.getMonth() + 1;
     const year = gotDate.getFullYear();
     return `${day}-${month}-${year}`;
 };
