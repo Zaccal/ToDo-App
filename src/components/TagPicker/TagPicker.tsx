@@ -1,9 +1,10 @@
 import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../../UI/Modal/Modal";
 import Chip from "../../UI/Chip/Chip";
 import { ITag } from "../../types/interfaces/Interfaces";
 import ChipTagRender from "./ChipTagRender";
+import useGetNowActiveList from "../../hooks/useGetNowActiveList";
 
 export interface ITagPicker {
     className?: string;
@@ -14,6 +15,11 @@ export interface ITagPicker {
 const TagPicker = ({ className, pickedTags, setPickedTags }: ITagPicker) => {
     const [isOpen, setIsOpen] = useState(false);
     const isOpenHandler = () => setIsOpen(false);
+    const nowActiveList = useGetNowActiveList()
+
+    useEffect(() => {
+        setPickedTags([])
+    }, [nowActiveList])
 
     return (
         <div className={`${className || ""}`}>
