@@ -11,14 +11,14 @@ interface IList {
 
 const List = ({title, children, className, titleSize = 14, gapListItems = true}: IList) => {
   return (
-    <nav className={`${className || ''} w-full py-1 overflow-y-scroll ${gapListItems ? classes.List : ''}`}>
+    <div className={`${className || ''} w-full py-1 overflow-y-scroll ${gapListItems ? classes.List : ''}`}>
         {title && (
           <div style={{
             fontSize: `${titleSize}px`
           }} className="text-main font-bold mb-3 dark:text-gray-500">{title.toUpperCase()}</div>
         )}
         {children}
-    </nav>
+    </div>
   )
 }
 
