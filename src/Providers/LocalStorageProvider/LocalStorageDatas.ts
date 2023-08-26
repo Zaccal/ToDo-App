@@ -10,15 +10,12 @@ export interface ILocalStorage {
     setSettingsStore: TypeSetState<ISettings>,
     tagsStore: ITag[],
     setTagsStore: TypeSetState<ITag[]>,
-    firstVisit: boolean,
-    setFirstVisit: TypeSetState<boolean>, 
 }
 
 export const ListsDatas: IList[] = [
     {
         name: 'Upcoming',
         icon: EnumIconName.keyboardDoubleArrowRight,
-        message: 0,
         active: false,
         accessEdit: false,
         tasks: [],
@@ -27,16 +24,35 @@ export const ListsDatas: IList[] = [
     {
         name: 'Today',
         icon: EnumIconName.clipboard,
-        message: 2,
         active: true,
         accessEdit: false,
-        tasks: [],
+        tasks: [
+            {
+                name: 'Put an asterisk above the repository of this project',
+                date: '',
+                decriptiton: '',
+                fromList: 'Today',
+                id: 1,
+                isDone: false,
+                subtasks: [],
+                tags: []
+            },
+            {
+                name: 'Get acquainted with the project',
+                date: '',
+                decriptiton: '',
+                fromList: 'Today',
+                id: 2,
+                isDone: false,
+                subtasks: [],
+                tags: []
+            }
+        ],
         id: 2
     },
     {
         name: 'Calendar',
         icon: EnumIconName.calenderar,
-        message: 0,
         active: false,
         accessEdit: false,
         tasks: [],
@@ -45,7 +61,6 @@ export const ListsDatas: IList[] = [
     {
         name: 'Important',
         icon: EnumIconName.star,
-        message: 0,
         active: false,
         accessEdit: false,
         tasks: [],
@@ -55,9 +70,8 @@ export const ListsDatas: IList[] = [
         name: 'Personal',
         icon: EnumIconName.defualtIcon,
         defualtIconColor: '#ff6b6b',
-        message: 0,
         active: false,
-        accessEdit: false,
+        accessEdit: true,
         tasks: [],
         id: 5
     },
@@ -65,9 +79,8 @@ export const ListsDatas: IList[] = [
         name: 'Work',
         icon: EnumIconName.defualtIcon,
         defualtIconColor: '#67d9e8',
-        message: 0,
         active: false,
-        accessEdit: false,
+        accessEdit: true,
         tasks: [],
         id: 6
     }
@@ -75,6 +88,7 @@ export const ListsDatas: IList[] = [
 
 export const settingsDatas: ISettings = {
     theme: "light",
+    isShowWelcomeMenu: true,
 }
 
 export const tagsDatas: ITag[] = [
@@ -95,12 +109,8 @@ export const tagsDatas: ITag[] = [
 export const defualtValueLocalStorage: ILocalStorage = {
     listsStore: ListsDatas,
     setListsStore: () => undefined,
-    settingsStore: {
-        theme: 'light'
-    },
+    settingsStore: settingsDatas,
     setSettingsStore: () => undefined,
     tagsStore: tagsDatas,
     setTagsStore: () => undefined,
-    firstVisit: true,
-    setFirstVisit: () => undefined
 }

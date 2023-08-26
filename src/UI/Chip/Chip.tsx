@@ -1,22 +1,41 @@
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
+import { darkenColor } from "../../utils/utils";
+import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider";
 
 interface IChip {
-  name: string,
-  removeHandler?: () => void,
-  color: string,  
-  onClick?: () => void,
+    name: string;
+    onRemoveButton?: () => void;
+    closeButton?: boolean;
+    color: string;
+    onClick?: () => void;
+    className?: string;
 }
 
-const Chip = ({name, color, removeHandler, onClick}: IChip) => {
+const Chip = ({name, color, onRemoveButton, className, onClick, closeButton = true}: IChip) => {
+    const {settingsStore} = useLocalStorageContext()    
+    const isDarkMode = settingsStore.theme === 'dark' ? true : false
+
     return (
-        <div style={{
-          borderColor: color,
-          color: color,
-        }} onClick={onClick} className="[word-wrap: break-word] w-max my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border bg-[#eceff1] bg-[transparent] px-[12px] py-0 text-[13px] font-normal normal-case leading-loose shadow-none">
+        <div
+            style={{
+                backgroundColor: isDarkMode ? 'transparent' : color, 
+                borderColor: color,
+                color: isDarkMode ? color : darkenColor(color, 90),
+            }}
+            onClick={onClick}
+            className={`${className || ""} Chip`}
+        >
             {name}
-            <span className="w-4 cursor-pointer pl-[5px] text-[16px] opacity-[.53] transition-all" onClick={removeHandler}>
-              <CloseIcon style={{width: '15px', height: '16px', color: color}}/>
-            </span>
+            {closeButton && (
+                <span
+                    className="w-4 cursor-pointer pl-[5px] text-[16px] opacity-[.53] transition-all"
+                    onClick={onRemoveButton}
+                >
+                    <CloseIcon
+                        style={{ width: "15px", height: "16px", color: isDarkMode ? color : darkenColor(color, 90) }}
+                    />
+                </span>
+            )}
         </div>
     );
 };

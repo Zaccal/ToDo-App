@@ -1,17 +1,19 @@
-import { ReactElement } from 'react'
-import classes from './Stack.module.css'
+import { ReactNode } from 'react'
 
 interface IStack {
     title?: string,
-    children?: ReactElement | ReactElement[] 
+    children?: ReactNode | ReactNode[]
     className?: string,
+    titleSize?: number,
 }
 
-const Stack = ({title, children, className}: IStack) => {
+const Stack = ({title, children, className, titleSize}: IStack) => {
   return (
-    <div className={`${className || ''} ${classes.stack}`}>
-        <div className="text-main font-bold text-sm mb-3">{title?.toUpperCase()}</div>
-        {children}
+    <div className={className || ''}>
+        <div className={`${titleSize ? `text-[${titleSize}px]` : 'text-sm'} text-main font-bold mb-3`}>{title?.toUpperCase()}</div> 
+        <div className="flex flex-wrap gap-2">
+          {children}
+        </div>
     </div>
   )
 }

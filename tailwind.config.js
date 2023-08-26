@@ -14,6 +14,7 @@ export default {
         'mute': '#ebebeb',
         'muteDark': '#e1e1e1', 
         'modalContainer': '#000000c4',
+        'defualtTextColor': '#4f4f50',
 
         // dark theme colors
         'bgColorDark': '#252525',
@@ -25,6 +26,9 @@ export default {
         '2': '2',
         '3': '3'
       },
+      fontWeight: {
+        'md': '600'
+      }
     },
   },
   plugins: [],
