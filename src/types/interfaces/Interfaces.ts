@@ -21,7 +21,8 @@ export interface IList {
 }
 
 export interface ISettings {
- theme: 'dark' | 'light'   
+ theme: 'dark' | 'light',
+ isShowWelcomeMenu: boolean,  
 }
 
 export interface ITag {

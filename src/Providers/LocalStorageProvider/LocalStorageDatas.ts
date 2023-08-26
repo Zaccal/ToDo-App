@@ -10,8 +10,6 @@ export interface ILocalStorage {
     setSettingsStore: TypeSetState<ISettings>,
     tagsStore: ITag[],
     setTagsStore: TypeSetState<ITag[]>,
-    firstVisit: boolean,
-    setFirstVisit: TypeSetState<boolean>, 
 }
 
 export const ListsDatas: IList[] = [
@@ -90,6 +88,7 @@ export const ListsDatas: IList[] = [
 
 export const settingsDatas: ISettings = {
     theme: "light",
+    isShowWelcomeMenu: true,
 }
 
 export const tagsDatas: ITag[] = [
@@ -110,12 +109,8 @@ export const tagsDatas: ITag[] = [
 export const defualtValueLocalStorage: ILocalStorage = {
     listsStore: ListsDatas,
     setListsStore: () => undefined,
-    settingsStore: {
-        theme: 'light'
-    },
+    settingsStore: settingsDatas,
     setSettingsStore: () => undefined,
     tagsStore: tagsDatas,
     setTagsStore: () => undefined,
-    firstVisit: true,
-    setFirstVisit: () => undefined
 }
