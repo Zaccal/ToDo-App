@@ -41,7 +41,7 @@ type TypeGetTypeCategorySortTask = 'Upcoming' | 'Today' | 'any'
 export const getTypeCategorySortTask = (task: ITask): TypeGetTypeCategorySortTask => {
     const isMonthSameNowMonth = Number(task.date.split('-')[1]) === new Date().getMonth() + 1                        
     const isDaySomeNowDay = Number(task.date.split('-')[0]) === new Date().getDate()       
-    const isDaySoon = Number(task.date.split('-')[0]) - 1 === new Date().getDate()       
+    const isDaySoon = Number(task.date.split('-')[0]) + 1 === new Date().getDate()       
 
     if (isDaySoon && isMonthSameNowMonth) return 'Upcoming'
     if (isDaySomeNowDay && isMonthSameNowMonth) return 'Today'
