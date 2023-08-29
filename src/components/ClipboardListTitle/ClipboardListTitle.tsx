@@ -4,6 +4,8 @@ import useGetNowActiveList from "../../hooks/useGetNowActiveList";
 import Input from "../../UI/Input/Input";
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider";
 import { getListTaskDoneCount } from "../../utils/utils";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import { useGlobalStateContext } from "../../Providers/GlobalStateProvider/GlobalStateProvider";
 
 interface IClipboardListTitle {
     className?: string
@@ -11,9 +13,11 @@ interface IClipboardListTitle {
 
 const ClipboardListTitle = ({className}: IClipboardListTitle) => {
     const nowActiveList = useGetNowActiveList()
-    const {listsStore, setListsStore} = useLocalStorageContext()
+    const {listsStore, setListsStore, settingsStore} = useLocalStorageContext()
     const [editMode, setEditMode] = useState(false)
     const [listName, setListName] = useState(nowActiveList.name)
+    const isScreenMd = window.innerWidth <= 1024 ? true : false
+    const {setIsOpenSidebarMenu} = useGlobalStateContext()
 
     useEffect(() => {
         setListName(nowActiveList.name)
@@ -41,26 +45,39 @@ const ClipboardListTitle = ({className}: IClipboardListTitle) => {
     }
 
     return (
-        <div onClick={switchEditModeHandler} className={`${className || ''} flex items-center`}>
-            {!editMode && (
-                <h1 style={{
-                    cursor: nowActiveList.accessEdit ? 'pointer' : 'auto', 
-                }} className="text-5xl font-black dark:text-white">
-                    {nowActiveList.name}
-                </h1>
-            )}
-            {editMode && (
-                <Input 
-                    autoFocus 
-                    value={listName}
-                    onKeyUp={event => changeNameHandler(event)} 
-                    onChange={event => setListName(event.target.value)} 
-                    onBlur={() => setEditMode(false)}
-                    classNameContainer="max-w-[200px] h-12"
-                    className="font-black text-2xl text-center"
-                />
-            )}
-            <MessageCountTitle className="ml-5" count={getListTaskDoneCount(nowActiveList.tasks)}/>
+        <div onClick={switchEditModeHandler} className={`${className || ''} flex items-center justify-between`}>
+            <div className="flex items-center">
+                {!editMode && (
+                    <h1 style={{
+                        cursor: nowActiveList.accessEdit ? 'pointer' : 'auto', 
+                    }} className="text-5xl font-black dark:text-white">
+                        {nowActiveList.name}
+                    </h1>
+                )}
+                {editMode && (
+                    <Input 
+                        autoFocus 
+                        value={listName}
+                        onKeyUp={event => changeNameHandler(event)} 
+                        onChange={event => setListName(event.target.value)} 
+                        onBlur={() => setEditMode(false)}
+                        classNameContainer="max-w-[200px] h-12"
+                        className="font-black text-2xl text-center"
+                    />
+                )}
+                <MessageCountTitle className="ml-5" count={getListTaskDoneCount(nowActiveList.tasks)}/>
+            </div>
+            {
+                isScreenMd && (
+                    <div onClick={() => setIsOpenSidebarMenu(true)}>
+                        <MenuRoundedIcon style={{
+                            width: '32px',
+                            height: '32px',
+                            color: settingsStore.theme === 'light' ? '#313131' : '#fff'
+                        }}/>
+                    </div>
+                )
+            }
         </div>
     );
 };
