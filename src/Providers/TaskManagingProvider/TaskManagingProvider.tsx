@@ -13,9 +13,7 @@ const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
     useEffect(() => {
         const intervalId = setInterval(() => {            
             const newDate = new Date();
-            if (newDate.getDate() !== currentDate.getDate()) {
-                console.log('change date');
-                
+            if (newDate.getDate() !== currentDate.getDate()) {                
                 setCurrentDate(newDate);
                 const newListStore = [
                     ...listsStore.slice(0, 2).map(listData => {
@@ -23,7 +21,7 @@ const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
                             return {
                                 ...listData,
                                 tasks: listData.tasks.filter(taskData => {                                
-                                    if (getTypeCategorySortTask(taskData) === 'Upcoming') {
+                                    if (getTypeCategorySortTask(taskData) === 'Upcoming' && taskData.fromList !== 'Upcoming') {
                                         return true
                                     }
                                 })
@@ -33,7 +31,7 @@ const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
                         return {
                             ...listData,
                             tasks: listData.tasks.filter(taskData => {
-                                if (getTypeCategorySortTask(taskData) === 'Today') {
+                                if (getTypeCategorySortTask(taskData) === 'Today' && taskData.fromList !== 'Today') {
                                     return true
                                 }
                             })
