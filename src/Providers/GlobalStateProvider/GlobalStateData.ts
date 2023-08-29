@@ -6,6 +6,8 @@ export interface IGlobalState {
     setVisibleTagModal: TypeSetState<boolean>;
     displayingTagModal: ITag;
     setDisplayingTagModal: TypeSetState<ITag>;
+    isOpenSidebarMenu: boolean,
+    setIsOpenSidebarMenu: TypeSetState<boolean>,
 }
 
 export const defualtTag: ITag = {
@@ -19,5 +21,7 @@ export const defualtValueGlobalState: IGlobalState = {
     visibleTagModal: false,
     setVisibleTagModal: () => undefined,
     displayingTagModal: defualtTag,
-    setDisplayingTagModal: () => undefined 
+    setDisplayingTagModal: () => undefined ,
+    isOpenSidebarMenu: false,
+    setIsOpenSidebarMenu: () => undefined
 }

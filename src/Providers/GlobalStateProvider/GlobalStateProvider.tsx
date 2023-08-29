@@ -10,6 +10,7 @@ const GlobalStateProvider = ({children}: {children: ReactElement}) => {
   const {tagsStore} = useLocalStorageContext()
   const [visibleTagModal, setVisibleTagModal] = useState(false)
   const [displayingTagModal, setDisplayingTagModal] = useState(tagsStore[0] || defualtTag)
+  const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState(false)
 
   return (
     <GlobalStateContext.Provider value={{
@@ -17,6 +18,8 @@ const GlobalStateProvider = ({children}: {children: ReactElement}) => {
       setVisibleTagModal,
       displayingTagModal,
       setDisplayingTagModal,
+      isOpenSidebarMenu,
+      setIsOpenSidebarMenu,
     }}>
       {children}
     </GlobalStateContext.Provider>

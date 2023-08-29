@@ -20,6 +20,7 @@ import {
     AddTagModal,
     ViewTagModal
 } from "./SidebarImports";
+import { useGlobalStateContext } from "../../Providers/GlobalStateProvider/GlobalStateProvider";
 
 
 const Sidebar = () => {
@@ -33,6 +34,7 @@ const Sidebar = () => {
     const {ref, inView} = useInView({
         threshold: 0.3,
     })
+    const {isOpenSidebarMenu, setIsOpenSidebarMenu} = useGlobalStateContext()
         
     const openSearchModalHandler = () => {
         inputSearchRef.current?.blur()
@@ -40,7 +42,7 @@ const Sidebar = () => {
     }
 
     return (
-        <BarContainer isOpen={false} isMobileMode={isScreenMd} title="Menu">
+        <BarContainer onClose={() => setIsOpenSidebarMenu(false)} isOpen={isOpenSidebarMenu} isMobileMode={isScreenMd} title="Menu">
             <div className="h-[85vh] relative overflow-y-scroll">
                 <Input 
                     ref={inputSearchRef} 
