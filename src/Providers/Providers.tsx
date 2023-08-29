@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import LocalStorageProvider from './LocalStorageProvider/LocalStorageProvider'
 import ThemeProvider from './ThemeProvider/ThemeProvider'
 import GlobalStateProvider from './GlobalStateProvider/GlobalStateProvider'
+import TaskManagingProvider from './TaskManagingProvider/TaskManagingProvider'
 
 const Providers = ({children}: {children: ReactElement}) => {
   return (
@@ -10,7 +11,9 @@ const Providers = ({children}: {children: ReactElement}) => {
         <LocalStorageProvider>
             <GlobalStateProvider>
               <ThemeProvider>
-                {children}
+                <TaskManagingProvider >
+                  {children}
+                </TaskManagingProvider>
               </ThemeProvider>
             </GlobalStateProvider>
         </LocalStorageProvider>

@@ -43,7 +43,7 @@ const AddNewTaskInput = () => {
             const TypeCategoryTask = getTypeCategorySortTask(newTaskData)
 
             setListsStore(listsStore.map(listData => {
-                if (listData.id === nowActiveList.id || TypeCategoryTask === listData.name) {
+                if (listData.id === nowActiveList.id || TypeCategoryTask === listData.name) {                    
                     return {
                         ...listData,
                         tasks: [...listData.tasks, {...newTaskData, id: Date.now(), fromList: name}]

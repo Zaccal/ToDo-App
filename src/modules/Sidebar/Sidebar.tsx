@@ -52,7 +52,7 @@ const Sidebar = () => {
                     <SidebarListsRender variant="defualt"/>
                 </List>
                 <Divider />
-                <List className="mt-5 mb-7" title="Lists">
+                <List className="mt-5 mb-7 max-h-[180px] overflow-y-scroll" title="Lists">
                     <SidebarListsRender variant="user"/>
                     <ListItem 
                         onClick={() => setModalsVisible({...modalsVisble, isAddListModalVisible: true})} 
