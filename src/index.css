@@ -25,6 +25,10 @@
     svg {
         @apply w-full h-full;
     }
+    
+    .outline-none {
+        outline: 0;
+    }
 }
 
 @layer components {
@@ -49,7 +53,7 @@
     }
 
     .Input {
-        @apply h-full w-full placeholder:text-main focus:outline-none bg-transparent dark:placeholder:text-gray-500;
+        @apply h-full w-full  focus:outline-none bg-transparent dark:placeholder:text-gray-500;
     } 
 
     .ListItem {
@@ -87,5 +91,23 @@
 
     .Chip {
         @apply w-max my-[5px] flex h-[28px] cursor-pointer items-center justify-between rounded-[16px] border bg-[#eceff1] bg-[transparent] px-[12px] py-0 text-[13px] font-normal normal-case leading-loose shadow-none;
+    }
+
+    .Select {
+        @apply cursor-pointer relative w-[20em] min-h-[1.5em] border  rounded-lg flex items-center gap-[.5em] p-[.5em] outline-none focus:border-element;
+    }
+
+    .Options {
+        @apply m-0 p-0 max-h-[15em] overflow-y-auto border rounded-lg w-full left-0 top-[110%] absolute bg-white z-3 hidden;
+    }
+    .Options.show {
+        @apply block;
+    }
+
+    .Option {
+        @apply transition-all py-3 px-2 cursor-pointer hover:bg-element hover:opacity-95 hover:font-bold;
+    }
+    .Option.selected {
+        @apply bg-element;
     }
 }
