@@ -1,27 +1,26 @@
-import { ITag } from "../../types/interfaces/Interfaces";
+import { ITag, ITagModalData, ITaskEditModalData } from "../../types/interfaces/Interfaces";
 import { TypeSetState } from "../../types/types/types";
 
 export interface IGlobalState {
-    visibleTagModal: boolean;
-    setVisibleTagModal: TypeSetState<boolean>;
-    displayingTagModal: ITag;
-    setDisplayingTagModal: TypeSetState<ITag>;
+    tagModalData: ITagModalData
+    setTagModalData: TypeSetState<ITagModalData>
     isOpenSidebarMenu: boolean,
     setIsOpenSidebarMenu: TypeSetState<boolean>,
-}
-
-export const defualtTag: ITag = {
-    name: '',
-    color: '',
-    listsById: [],
-    id: 0
+    taskEditModalData: ITaskEditModalData,
+    setTaskEditModalData: TypeSetState<ITaskEditModalData>
 }
 
 export const defualtValueGlobalState: IGlobalState = {
-    visibleTagModal: false,
-    setVisibleTagModal: () => undefined,
-    displayingTagModal: defualtTag,
-    setDisplayingTagModal: () => undefined ,
+    tagModalData: {
+        isOpenTagModal: false,
+        displayingTagData: null
+    },
+    setTagModalData: () => undefined,
     isOpenSidebarMenu: false,
-    setIsOpenSidebarMenu: () => undefined
+    setIsOpenSidebarMenu: () => undefined,
+    taskEditModalData: {
+        isOpenModal: false,
+        taskDataToEdit: null,
+    },
+    setTaskEditModalData: () => undefined
 }
