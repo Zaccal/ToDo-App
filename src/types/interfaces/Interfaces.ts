@@ -31,3 +31,13 @@ export interface ITag {
     readonly id: number,
     listsById: number[],
 }
+
+export interface ITagModalData {
+    isOpenTagModal: boolean,
+    displayingTagData: ITag | null
+}
+
+export interface ITaskEditModalData {
+    isOpenModal: boolean,
+    taskDataToEdit: ITask | null,
+}
