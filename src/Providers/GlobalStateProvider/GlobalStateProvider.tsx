@@ -1,9 +1,10 @@
 import { createContext, useContext, useState, ReactElement } from 'react'
 import { IGlobalState, defualtValueGlobalState } from './GlobalStateData'
-import { ITagModalData, ITaskEditModalData } from '../../types/interfaces/Interfaces'
+import { ITagModalData, ITaskForEditData } from '../../types/interfaces/Interfaces'
 
 const GlobalStateContext = createContext<IGlobalState>(defualtValueGlobalState)
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useGlobalStateContext = () => useContext(GlobalStateContext)
 
 const GlobalStateProvider = ({children}: {children: ReactElement}) => {
@@ -14,10 +15,10 @@ const GlobalStateProvider = ({children}: {children: ReactElement}) => {
   })
 
   const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState(false)
-  const [taskEditModalData, setTaskEditModalData] = useState<ITaskEditModalData>({
-    isOpenModal: false,
-    taskDataToEdit: null
-  })
+  const [taskForEditData, setTaskForEditData] = useState<ITaskForEditData>({
+      isOpenModal: false,
+      taskDataToEdit: null,
+  });
 
   return (
     <GlobalStateContext.Provider value={{
@@ -25,8 +26,8 @@ const GlobalStateProvider = ({children}: {children: ReactElement}) => {
       setTagModalData,
       isOpenSidebarMenu,
       setIsOpenSidebarMenu,
-      taskEditModalData,
-      setTaskEditModalData,
+      taskForEditData,
+      setTaskForEditData,
     }}>
       {children}
     </GlobalStateContext.Provider>

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement, useEffect, useState } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import classes from './Modal.module.css'
 
 export interface IModal {
@@ -30,7 +30,6 @@ const Modal = ({isOpen, onClose, children, marginTopContent = 20, maxWidth = 646
 
         setTimeout(() => setRootClassesContainer([...rootClassesContainer, 'opacity-0']), 50)
         setTimeout(() => setRootClassesContainer(prev => [...prev, 'hidden']), 70)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen])
 
     return (

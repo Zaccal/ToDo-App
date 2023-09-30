@@ -23,13 +23,11 @@ const DatePickerIcon = ({saveSelectedDate, setSaveSelectedDate}: IDatePickerIcon
 
     useEffect(() => {
         setSaveSelectedDate(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [nowActiveList])
 
     useEffect(() => {
         const today = formatDate(new Date())
         if (today === formatDate(saveSelectedDate)) setSaveSelectedDate(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [saveSelectedDate])
 
     return (

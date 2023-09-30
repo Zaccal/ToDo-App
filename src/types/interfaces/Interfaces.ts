@@ -37,7 +37,7 @@ export interface ITagModalData {
     displayingTagData: ITag | null
 }
 
-export interface ITaskEditModalData {
-    isOpenModal: boolean,
-    taskDataToEdit: ITask | null,
+export interface ITaskForEditData {
+    isOpenModal: boolean;
+    taskDataToEdit: ITask | null;
 }

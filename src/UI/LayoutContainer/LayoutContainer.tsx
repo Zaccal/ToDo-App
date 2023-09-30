@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, CSSProperties } from "react";
 import { isNotUndefind } from "../../types/Guards/isNotUndefind";
 import { GetTemplateColums, TypeGetTemplateColums } from "./GetTemplateColums";
 
@@ -19,6 +19,8 @@ interface ILayoutContainer extends Partial<TypeIndents> {
     spacing?: number;
     col?: TypeGetTemplateColums;
     typeSize?: "rem" | "px";
+    hScreen?: boolean,
+    className?: string, 
 }
 
 const LayoutContainer = ({
@@ -34,12 +36,14 @@ const LayoutContainer = ({
     typeSize = "rem",
     marginLeft,
     marginRight,
+    hScreen = false,
+    className
 }: ILayoutContainer) => {
   
-    const containerStyles = {
+    const containerStyles: CSSProperties = {
         gridTemplateColumns: GetTemplateColums(isNotUndefind(col)),
         gridGap: `${isNotUndefind(spacing)}${typeSize}`,
-
+        height: hScreen ? '100vh' : 'auto',
         padding: `${isNotUndefind(paddingTop)}${typeSize} 
                   ${isNotUndefind(paddingRight)}${typeSize} 
                   ${isNotUndefind(paddingBottom)}${typeSize} 
@@ -52,7 +56,7 @@ const LayoutContainer = ({
     };
 
     return (
-        <div style={containerStyles} className="lg:grid h-screen">
+        <div style={containerStyles} className={`lg:grid ${className || ''}`}>
             {children}
         </div>
     );

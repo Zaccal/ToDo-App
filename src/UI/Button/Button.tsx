@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement, CSSProperties } from "react"
+import { MouseEventHandler, ReactElement } from "react"
 import { Link } from "react-router-dom"
 
 interface IButton {

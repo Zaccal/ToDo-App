@@ -12,7 +12,10 @@ interface ISelect {
 
 const Select = ({options, onChange, value, className}: ISelect) => {    
     const [isOpen, setIsOpen] = useState(false)
-    const [isSelected, setIsSelected] = useState<TypeSelectOption | undefined>(value)
+    const [isSelected, setIsSelected] = useState<TypeSelectOption>(value || {
+        label: 'Select',
+        value: 'select'
+    })
 
     const selectHandler = (event: MouseEvent<HTMLLIElement>, newValue: TypeSelectOption) => {
         event.stopPropagation()
@@ -20,8 +23,7 @@ const Select = ({options, onChange, value, className}: ISelect) => {
         setIsSelected(newValue)
         if (onChange)
             onChange(newValue)
-    }
-
+    }        
     
     return (
         <div 
@@ -30,7 +32,7 @@ const Select = ({options, onChange, value, className}: ISelect) => {
             tabIndex={0} 
             className={`${className || ''} Select`}
         >
-            <span className="flex-grow">{value?.label}</span>
+            <span className="flex-grow">{value?.label || 'Select...'}</span>
             <button className="cursor-pointer text-lg focus:text-main hover:text-main">
                 <KeyboardArrowDownRoundedIcon />
             </button>
@@ -40,7 +42,7 @@ const Select = ({options, onChange, value, className}: ISelect) => {
                         <li 
                             key={optionData.value} 
                             onClick={event => selectHandler(event, optionData)} 
-                            className={`Option ${isSelected?.value === optionData.value ? 'selected' : ''}`}
+                            className={`Option ${isSelected.value === optionData.value ? 'selected' : ''}`}
                         >
                             {optionData.label}
                         </li>

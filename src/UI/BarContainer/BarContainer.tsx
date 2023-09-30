@@ -55,7 +55,7 @@ const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMo
   }
 
   return (
-    <div className="bg-bgColor dark:bg-bgColorDark dark:text-white rounded-2xl py-3 px-4 h-full relative">
+    <div className="bg-bgColor dark:bg-bgColorDark dark:text-white inline-block rounded-2xl py-3 px-4 h-full relative">
         <div className="flex justify-between items-center mb-5">
           <h3 className="font-bold text-2xl">{title}</h3>
           {subHeader}

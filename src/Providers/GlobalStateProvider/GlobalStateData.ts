@@ -1,4 +1,4 @@
-import { ITag, ITagModalData, ITaskEditModalData } from "../../types/interfaces/Interfaces";
+import { ITagModalData, ITaskForEditData } from "../../types/interfaces/Interfaces";
 import { TypeSetState } from "../../types/types/types";
 
 export interface IGlobalState {
@@ -6,8 +6,8 @@ export interface IGlobalState {
     setTagModalData: TypeSetState<ITagModalData>
     isOpenSidebarMenu: boolean,
     setIsOpenSidebarMenu: TypeSetState<boolean>,
-    taskEditModalData: ITaskEditModalData,
-    setTaskEditModalData: TypeSetState<ITaskEditModalData>
+    taskForEditData: ITaskForEditData,
+    setTaskForEditData: TypeSetState<ITaskForEditData>
 }
 
 export const defualtValueGlobalState: IGlobalState = {
@@ -18,9 +18,9 @@ export const defualtValueGlobalState: IGlobalState = {
     setTagModalData: () => undefined,
     isOpenSidebarMenu: false,
     setIsOpenSidebarMenu: () => undefined,
-    taskEditModalData: {
+    taskForEditData: {
         isOpenModal: false,
         taskDataToEdit: null,
     },
-    setTaskEditModalData: () => undefined
+    setTaskForEditData: () => undefined
 }

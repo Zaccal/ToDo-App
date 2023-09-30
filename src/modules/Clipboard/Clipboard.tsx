@@ -1,5 +1,6 @@
 import AddNewTaskInput from "../../components/AddNewTaskInput/AddNewTaskInput";
 import ClipboardListTitle from "../../components/ClipboardListTitle/ClipboardListTitle"
+import TaskEditModal from "../TaskEditModal/TaskEditModal";
 import TasksListRender from "../../components/TasksListRender/TasksListRender";
 
 const Clipboard = () => {  
@@ -8,6 +9,7 @@ const Clipboard = () => {
       <ClipboardListTitle className="mb-11"/>
       <AddNewTaskInput />
       <TasksListRender />
+      <TaskEditModal />
     </div>
   )
 }

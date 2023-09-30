@@ -4,6 +4,7 @@ import { ILocalStorage, ListsDatas, defualtValueLocalStorage, settingsDatas, tag
 
 const localStorageContext = createContext<ILocalStorage>(defualtValueLocalStorage)
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useLocalStorageContext = () => useContext(localStorageContext)
 
 const LocalStorageProvider = ({children}: {children: ReactElement}) => {

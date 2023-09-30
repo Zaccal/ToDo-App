@@ -9,7 +9,8 @@ const Settings = () => {
 
   useEffect(() => {    
     setSettingsStore({        
-        theme: darkMode ? 'dark' : 'light'
+        theme: darkMode ? 'dark' : 'light',
+        isShowWelcomeMenu: settingsStore.isShowWelcomeMenu,
     })
   }, [darkMode])
   

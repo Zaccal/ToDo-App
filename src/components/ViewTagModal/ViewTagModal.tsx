@@ -29,7 +29,6 @@ const ViewTagModal = () => {
     })
 
     return result
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tagsStore, listsStore, tagModalData])  
 
   return (

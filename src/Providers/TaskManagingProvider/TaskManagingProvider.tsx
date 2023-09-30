@@ -48,7 +48,6 @@ const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
         return () => {
           clearInterval(intervalId);
         };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [currentDate]); 
       
 

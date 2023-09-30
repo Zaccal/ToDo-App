@@ -8,7 +8,7 @@ const Header = () => {
                 <div className={classes.headerContainer}>
                     <div className="flex items-center">
                         <img
-                            src="../../../public/Logo.svg"
+                            src="/Logo.svg"
                             className="mr-3 h-6 sm:h-9"
                             alt="Flowbite Logo"
                         />
