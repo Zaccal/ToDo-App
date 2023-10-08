@@ -5,7 +5,6 @@ import { ITag, ITask } from '../../types/interfaces/Interfaces';
 import useGetNowActiveList from '../../hooks/useGetNowActiveList';
 import DatePickerIcon from '../../UI/DatePickerIcon/DatePickerIcon';
 import { formatDate, getTypeCategorySortTask } from '../../utils/utils';
-import TagPicker from '../TagPicker/TagPicker';
 import { useLocalStorageContext } from '../../Providers/LocalStorageProvider/LocalStorageProvider';
 
 const AddNewTaskInput = () => {
@@ -32,10 +31,6 @@ const AddNewTaskInput = () => {
             }
         })
     }, [pickedDate])
-
-    const pickTagHandler = (newValue: ITag[]) => {
-        setNewTaskData({...newTaskData, tags: newValue})
-    }
 
     const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {                        
         if (event.key === 'Enter' && event.currentTarget.value.length) {  
@@ -74,7 +69,6 @@ const AddNewTaskInput = () => {
                 className="pl-2"
                 subheader={
                     <div className='flex'>
-                        <TagPicker setPickedTags={pickTagHandler} pickedTags={newTaskData.tags} className='mr-2'/>
                         <DatePickerIcon 
                             saveSelectedDate={pickedDate} 
                             setSaveSelectedDate={setPickedDate}/>
