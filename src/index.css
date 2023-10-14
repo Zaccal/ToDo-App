@@ -9,23 +9,23 @@
     }
 
     body {
-        font-family: 'Manrope', sans-serif;
+        font-family: "Manrope", sans-serif;
         @apply font-normal text-defualtTextColor;
         @apply bg-[#FAFAFA];
     }
 
     body.lock {
-        @apply overflow-y-hidden
+        @apply overflow-y-hidden;
     }
 
     body.dark {
-        @apply bg-[#313131]
+        @apply bg-[#313131];
     }
 
     svg {
         @apply w-full h-full;
     }
-    
+
     .outline-none {
         outline: 0;
     }
@@ -33,7 +33,7 @@
 
 @layer components {
     .button {
-        @apply transition-all flex text-[#26292c] dark:text-gray-500;   
+        @apply transition-all flex text-[#26292c] dark:text-gray-500;
     }
 
     .button-text {
@@ -45,7 +45,7 @@
     }
 
     .button-outline {
-        @apply rounded-lg w-full font-bold flex justify-center py-3 px-2 border-2 border-[#e6e6e6]
+        @apply rounded-lg w-full font-bold flex justify-center py-3 px-2 border-2 border-[#e6e6e6];
     }
 
     .InputContainer {
@@ -85,7 +85,7 @@
     }
 
     .CheckboxChekedText {
-        color: gray !important; 
+        color: gray !important;
         @apply line-through;
     }
 
@@ -94,7 +94,7 @@
     }
 
     .Select {
-        @apply cursor-pointer relative w-[20em] min-h-[1.5em] border  rounded-lg flex items-center gap-[.5em] p-[.5em] outline-none focus:border-element;
+        @apply dark:border-gray-500 dark:text-gray-500 cursor-pointer relative w-[20em] min-h-[1.5em] border  rounded-lg flex items-center gap-[.5em] p-[.5em] outline-none focus:border-element;
     }
 
     .Options {
