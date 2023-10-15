@@ -3,17 +3,20 @@ import classes from './BarContainer.module.css'
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 
 interface IBarContainer {
-  children: ReactElement | ReactElement[],
-  title: string,
+  children?: ReactElement | ReactElement[],
+  title?: string,
   subHeader?: ReactElement,
-  isOpen?: boolean,
+  isOpen: boolean,
   onClose?: () => void,
   isMobileMode: boolean,
+  side?: 'left' | 'right'
 }
 
-const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMobileMode}: IBarContainer) => {
+const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMobileMode, side = 'left'}: IBarContainer) => {
+  const hideMenuClass = side === 'left' ? classes.closeLeft : classes.closeRight
+  const openMenuClass = side === 'left' ? classes.openLeft : classes.openRight 
   const [rootClassesContainer, setRootClassesContainer] = useState([classes.container, 'hidden'])
-  const [rootClassesMenu, setRootClassesMenu] = useState([classes.menu, 'left-[-100%]'])
+  const [rootClassesMenu, setRootClassesMenu] = useState([classes.menu, hideMenuClass])
 
   // Animation on open or close 
   useEffect(() => {
@@ -21,13 +24,13 @@ const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMo
       setRootClassesContainer([...rootClassesContainer, 'block'].filter(classEl => classEl !== 'hidden'))
 
       setTimeout(() => {
-        setRootClassesMenu([...rootClassesMenu, 'left-0'].filter(classEl => classEl !== 'left-[-100%]'))
+        setRootClassesMenu([...rootClassesMenu, openMenuClass].filter(classEl => classEl !== hideMenuClass))
       }, 30)
 
       return undefined
     }
 
-    setRootClassesMenu([...rootClassesMenu, 'left-[-100%]'].filter(classEl => classEl !== 'left-0'))
+    setRootClassesMenu([...rootClassesMenu, hideMenuClass].filter(classEl => classEl !== openMenuClass))
     
     setTimeout(() => {
       setRootClassesContainer([...rootClassesContainer, 'hidden'].filter(classEl => classEl !== 'block'))
@@ -52,7 +55,7 @@ const BarContainer = ({children, title, subHeader, isOpen = false, onClose, isMo
   }
 
   return (
-    <div className="bg-bgColor dark:bg-bgColorDark dark:text-white rounded-2xl py-3 px-4 h-full relative">
+    <div className="bg-bgColor dark:bg-bgColorDark dark:text-white inline-block rounded-2xl py-3 px-4 h-full relative">
         <div className="flex justify-between items-center mb-5">
           <h3 className="font-bold text-2xl">{title}</h3>
           {subHeader}

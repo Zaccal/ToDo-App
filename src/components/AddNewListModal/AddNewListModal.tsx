@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Color from "../../UI/Color/Color"
 import Input from "../../UI/Input/Input"
 import Modal from "../../UI/Modal/Modal"
@@ -28,7 +28,6 @@ const AddNewListModal = ({isOpen, onClose}: TypeCustomModal) => {
       defualtIconColor: selectedColorData,
       active: true,
       accessEdit: true,
-      message: 0,
       tasks: [],
       id: Date.now(),
     }

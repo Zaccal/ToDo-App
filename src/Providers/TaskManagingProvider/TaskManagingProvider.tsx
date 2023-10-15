@@ -21,7 +21,7 @@ const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
                             return {
                                 ...listData,
                                 tasks: listData.tasks.filter(taskData => {                                
-                                    if (getTypeCategorySortTask(taskData) === 'Upcoming' && taskData.fromList !== 'Upcoming') {
+                                    if (getTypeCategorySortTask(taskData) === 'Upcoming' || taskData.fromList === 'Upcoming') {
                                         return true
                                     }
                                 })
@@ -31,7 +31,7 @@ const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
                         return {
                             ...listData,
                             tasks: listData.tasks.filter(taskData => {
-                                if (getTypeCategorySortTask(taskData) === 'Today' && taskData.fromList !== 'Today') {
+                                if (getTypeCategorySortTask(taskData) === 'Today' || taskData.fromList === 'Today') {
                                     return true
                                 }
                             })
@@ -48,7 +48,6 @@ const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
         return () => {
           clearInterval(intervalId);
         };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [currentDate]); 
       
 

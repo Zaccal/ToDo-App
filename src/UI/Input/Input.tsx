@@ -37,7 +37,7 @@ const Input = forwardRef((props: IInput, ref: LegacyRef<HTMLInputElement>) => {
                     </label>
                 )
             }
-            <div className={`${classNameContainer || ""} ${labelName ? "mt-1" : ""} ${varaint === "outline" ? "border-2" : ""} InputContainer`}>
+            <div className={`${classNameContainer || ""} ${labelName ? "mt-1" : ""} ${varaint === "outline" ? "border" : ""} InputContainer`}>
                 {icon && (
                     <div className="w-7 h-7 ml-2 text-main dark:text-gray-500">
                         {icon}

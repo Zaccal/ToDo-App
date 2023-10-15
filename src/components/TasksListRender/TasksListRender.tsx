@@ -17,6 +17,7 @@ const TasksListRender = () => {
                         isDone={taskData.isDone}
                         date={taskData.date}
                         fromList={taskData.fromList}
+                        taskFullDate={taskData}
                     />
                 );
             })}

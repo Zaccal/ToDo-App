@@ -8,8 +8,14 @@ import { darkenColor } from "../../utils/utils"
 import Task from "../Task/Task"
 
 const ViewTagModal = () => {
-  const {visibleTagModal, setVisibleTagModal, displayingTagModal} = useGlobalStateContext()
-  const {listsStore} = useLocalStorageContext()
+  const {tagModalData, setTagModalData} = useGlobalStateContext()
+  const {tagsStore, listsStore} = useLocalStorageContext()
+  const displayingTagData = tagModalData.displayingTagData || {
+    name: 'Error: Tag not found',
+    color: '#42414d',
+    id: 0,
+    listsById: []
+  } 
 
   const findTaskWithItTag = useCallback((): ITask[] => {
     const result: ITask[] = []
@@ -17,22 +23,22 @@ const ViewTagModal = () => {
     listsStore.forEach(listData => {
       listData.tasks.forEach(taskData => {
           taskData.tags.forEach(tagData => {
-            if (tagData.id === displayingTagModal.id) result.push(taskData) 
+            if (tagData.id === displayingTagData.id) result.push(taskData) 
           })
       })
     })
 
     return result
-  }, [listsStore, displayingTagModal])  
+  }, [tagsStore, listsStore, tagModalData])  
 
   return (
-    <Modal isOpen={visibleTagModal} onClose={() => setVisibleTagModal(false)}>
+    <Modal isOpen={tagModalData.isOpenTagModal} onClose={() => setTagModalData(prev => ({...prev, isOpenTagModal: false}))}>
       <div className="px-4 py-3 rounded-lg" style={{
-        backgroundColor: displayingTagModal.color,
+        backgroundColor: displayingTagData.color,
       }}>
         <h2 style={{
-          color: darkenColor(displayingTagModal.color, 120)
-        }} className="text-xl"># {displayingTagModal.name}</h2>
+          color: darkenColor(displayingTagData.color, 120)
+        }} className="text-xl"># {displayingTagData.name}</h2>
       </div>
       <List gapListItems={false} titleSize={12} title="tasks:" className="mt-3 rounded-lg h-[428px]">
         {findTaskWithItTag().map(taskData => {

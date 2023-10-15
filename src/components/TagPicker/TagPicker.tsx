@@ -1,61 +1,43 @@
-import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
-import { useState, useEffect } from "react";
-import Modal from "../../UI/Modal/Modal";
-import Chip from "../../UI/Chip/Chip";
-import { ITag } from "../../types/interfaces/Interfaces";
-import ChipTagRender from "./ChipTagRender";
-import useGetNowActiveList from "../../hooks/useGetNowActiveList";
+import { DependencyList } from "react"
+import usePickTag from "../../hooks/usePickTag"
+import { ITag } from "../../types/interfaces/Interfaces"
+import Chip from "../../UI/Chip/Chip"
+import Stack from "../../UI/Stack/Stack"
+import { useEffect } from "react"
+import { TypeSetState } from "../../types/types/types"
 
 export interface ITagPicker {
-    className?: string;
-    pickedTags: ITag[];
-    setPickedTags: (newValue: ITag[]) => void;
+    defualtTags?: ITag[]
+    dependency?: DependencyList
+    saveOn?: TypeSetState<ITag[]>
 }
 
-const TagPicker = ({ className, pickedTags, setPickedTags }: ITagPicker) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const isOpenHandler = () => setIsOpen(false);
-    const nowActiveList = useGetNowActiveList()
+const TagPicker = ({ defualtTags, dependency, saveOn }: ITagPicker) => {
+    const [pickedTags, pickedTagsTo, dispatchTag] = usePickTag(defualtTags, dependency)
 
     useEffect(() => {
-        setPickedTags([])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [nowActiveList])
+        if (!saveOn) return
+        saveOn(pickedTagsTo)
+    }, [pickedTagsTo])
 
     return (
-        <div className={`${className || ""}`}>
-            <div onClick={() => setIsOpen(true)}>
-                <LocalOfferRoundedIcon style={{
-                    color: pickedTags.length ? '#ffd43b' : '#717171'
-                }} className="dark:text-gray-500" />
-            </div>
-            <Modal isOpen={isOpen} onClose={isOpenHandler}>
-                <>
-                    <div className="border-2 dark:border-0 dark:bg-main rounded-lg h-10 flex items-center px-3">
-                        {pickedTags.length ? (
-                            pickedTags.map(pickedTagData => {
-                                return (
-                                    <Chip
-                                        className="mr-2"
-                                        onRemoveButton={() =>setPickedTags(pickedTags.filter((pickTag) => pickTag.id !== pickedTagData.id))}
-                                        key={pickedTagData.id}
-                                        name={pickedTagData.name}
-                                        color={pickedTagData.color}
-                                    />
-                                );
-                            })
-                        ) : (
-                            <p className="dark:text-mute text-sm font-bold">
-                                Task tags...
-                            </p>
-                        )}
-                    </div>
-                    
-                    <ChipTagRender pickedTags={pickedTags} setPickedTags={setPickedTags} />
-                </>
-            </Modal>
-        </div>
-    );
-};
+        <>
+            <Stack className="dark:border-gray-500 border rounded-3xl h-12 flex items-center px-3">
+                {pickedTagsTo.map(tagData => (
+                    <Chip color={tagData.color} key={tagData.id} name={tagData.name} onRemoveButton={() => dispatchTag(tagData)} />
+                ))}
+            </Stack>
+            <Stack className="mt-2" title="Choose tag:">
+                {pickedTags.length ? (
+                    pickedTags.map(tagData => (
+                        <Chip closeButton={false} color={tagData.color} key={tagData.id} name={tagData.name} onClick={() => dispatchTag(tagData)} />
+                    ))
+                ) : (
+                    <p className="text-gray-300">Has not tags...</p>
+                )}
+            </Stack>
+        </>
+    )
+}
 
-export default TagPicker;
+export default TagPicker

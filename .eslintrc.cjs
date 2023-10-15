@@ -23,5 +23,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@typescript-eslint/no-non-null-assertion': 'off',
+    "no-console": "warn",
+    "react-hooks/exhaustive-deps": 'off',
   },
 }

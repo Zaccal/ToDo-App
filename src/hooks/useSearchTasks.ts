@@ -21,7 +21,6 @@ const useSearchTasks = (target: string): ITask[] => {
         if (!target) return tasks
         
         return tasks.filter(taskData => taskData.name.toLowerCase().includes(target.toLocaleLowerCase()))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [target, listsStore])
 
     return searchedTasks

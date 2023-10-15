@@ -5,11 +5,13 @@ import { ITag } from "../../types/interfaces/Interfaces";
 
 const SidebarTagsRender = () => {
     const { tagsStore } = useLocalStorageContext();
-    const {setDisplayingTagModal, setVisibleTagModal} = useGlobalStateContext()
+    const {setTagModalData} = useGlobalStateContext()
     
     const showTagModalHandler = (selectedTag: ITag) => {
-        setDisplayingTagModal(selectedTag)
-        setVisibleTagModal(true)
+        setTagModalData({
+            isOpenTagModal: true,
+            displayingTagData: selectedTag,
+        })
     }
 
     return (
