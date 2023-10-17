@@ -1,5 +1,5 @@
 import { useGlobalStateContext } from "../../Providers/GlobalStateProvider/GlobalStateProvider"
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { Divider, Input, Modal, Textarea, Checkbox } from "./TaskEditModalUIImports"
 import { TypeSelectOption } from "../../UI/Select/Select"
 import SelectList from "../../components/SelectList/SelectList"
@@ -7,9 +7,10 @@ import SelcetDate from "../../components/SlectDate/SelcetDate"
 import TagPicker from "../../components/TagPicker/TagPicker"
 import { ITag } from "../../types/interfaces/Interfaces"
 import { Button } from "../Sidebar/SidebarImports"
-import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider"
 import { formatDate } from "../../utils/utils"
 import Alert from "../../components/Alert/Alert"
+import useDeleteTask from "../../hooks/useDeleteTask"
+import useEditTaskSettings from "../../hooks/useEditSettings"
 
 const TaskEditModal = () => {
     const { taskForEditData, setTaskForEditData } = useGlobalStateContext()
@@ -30,55 +31,27 @@ const TaskEditModal = () => {
         setIsSetDate(taskForEditData.taskDataToEdit?.date ? true : false)
     }, [taskForEditData])
 
-    const { listsStore, setListsStore } = useLocalStorageContext()
-    const saveSettingsHandler = () => {
-        setListsStore(
-            listsStore.map(listData => {
-                if (listData.tasks.some(taskData => taskData.id === taskForEditData.taskDataToEdit?.id)) {
-                    return {
-                        ...listData,
-                        tasks: listData.tasks.map(taskData => {
-                            if (taskData.id === taskForEditData.taskDataToEdit?.id) {
-                                return {
-                                    ...taskData,
-                                    tags: pickedTags,
-                                    fromList: fromListEdited?.label || taskData.fromList,
-                                    date: isSetDate ? formatDate(dateEdited) || taskData.date : "",
-                                    decriptiton: inputValues.description,
-                                    name: inputValues.title,
-                                }
-                            }
-
-                            return taskData
-                        }),
-                    }
-                }
-
-                return listData
-            })
-        )
-
-        setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))
-    }
+    const saveSettingsHandler = useEditTaskSettings(
+        taskData => {
+            return {
+                ...taskData,
+                tags: pickedTags,
+                fromList: fromListEdited?.label || taskData.fromList,
+                date: isSetDate ? formatDate(dateEdited) || taskData.date : "",
+                decriptiton: inputValues.description,
+                name: inputValues.title,
+            }
+        },
+        () => {
+            setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))
+        }
+    )
 
     const [isOpenAlert, setIsOpenAlert] = useState(false)
-    const deleteTaskHandler = useCallback(() => {
-        setListsStore(
-            listsStore.map(listData => {
-                if (listData.tasks.some(taskData => taskData.id === taskForEditData.taskDataToEdit?.id)) {
-                    return {
-                        ...listData,
-                        tasks: listData.tasks.filter(taskData => taskData.id !== taskForEditData.taskDataToEdit?.id),
-                    }
-                }
-
-                return listData
-            })
-        )
-
+    const deleteTaskHandler = useDeleteTask(() => {
         setIsOpenAlert(false)
         setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))
-    }, [listsStore, taskForEditData])
+    }, [taskForEditData])
 
     if (!taskForEditData.taskDataToEdit) return <></>
 
@@ -132,7 +105,7 @@ const TaskEditModal = () => {
             </div>
 
             <div className="flex mt-5">
-                <Button onClick={saveSettingsHandler} className="mr-2" variant="contained">
+                <Button onClick={() => saveSettingsHandler(taskForEditData.taskDataToEdit!.id)} className="mr-2" variant="contained">
                     Save
                 </Button>
                 <Button onClick={() => setIsOpenAlert(true)} className="bg-red-500 text-white" variant="contained">
@@ -143,7 +116,7 @@ const TaskEditModal = () => {
                 subtitle={`"${taskForEditData.taskDataToEdit.name}" will be permanently deleted`}
                 onYes={{
                     text: "Delete",
-                    event: deleteTaskHandler,
+                    event: () => deleteTaskHandler(taskForEditData.taskDataToEdit!),
                 }}
                 onNo={{ text: "Cancel" }}
                 title="Are you sure?"
