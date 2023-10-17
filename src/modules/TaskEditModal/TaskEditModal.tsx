@@ -34,7 +34,7 @@ const TaskEditModal = () => {
     const saveSettingsHandler = () => {
         setListsStore(
             listsStore.map(listData => {
-                if (listData.name === taskForEditData.taskDataToEdit?.fromList) {
+                if (listData.tasks.some(taskData => taskData.id === taskForEditData.taskDataToEdit?.id)) {
                     return {
                         ...listData,
                         tasks: listData.tasks.map(taskData => {
@@ -65,7 +65,7 @@ const TaskEditModal = () => {
     const deleteTaskHandler = useCallback(() => {
         setListsStore(
             listsStore.map(listData => {
-                if (listData.name === taskForEditData.taskDataToEdit?.fromList) {
+                if (listData.tasks.some(taskData => taskData.id === taskForEditData.taskDataToEdit?.id)) {
                     return {
                         ...listData,
                         tasks: listData.tasks.filter(taskData => taskData.id !== taskForEditData.taskDataToEdit?.id),
