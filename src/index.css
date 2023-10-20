@@ -13,13 +13,13 @@
         width: 6px;
         background: transparent;
     }
-    
+
     ::-webkit-scrollbar-thumb {
         background: gray;
         -webkit-border-radius: 1ex;
         -webkit-box-shadow: 0px 1px 2px #000;
     }
-    
+
     ::-webkit-scrollbar-corner {
         background: gray;
     }
@@ -30,7 +30,6 @@
         @apply bg-[#FAFAFA];
     }
 
-    
     *::-webkit-scrollbar-thumb {
         background: gray;
         -webkit-border-radius: 1ex;

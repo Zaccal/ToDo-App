@@ -82,14 +82,14 @@ const TaskEditModal = () => {
                 placeholder="Description"
             />
 
-            <div className="flex items-center gap-5 mt-4">
-                <p className="text-md font-bold">List</p>
+            <div className="md:flex items-center gap-5 mt-4">
+                <p className="mb-2 md:mb-0 text-md font-bold">List</p>
                 <SelectList saveSelectOption={setFromListEdited} />
             </div>
 
             <div className="mt-4">
-                <label htmlFor="date" className="mt-4">
-                    <span className="text-md font-bold pr-5">Date</span>
+                <label htmlFor="date" className="mt-4 flex-col md:flex-row flex">
+                    <span className="mb-2 md:mb-0 text-md font-bold pr-5">Date</span>
                     <SelcetDate isDisabled={!isSetDate} saveDate={setDateEdited} />
                 </label>
             </div>
@@ -104,8 +104,8 @@ const TaskEditModal = () => {
                 <TagPicker saveOn={setPickedTags} dependency={[taskForEditData.isOpenModal]} defualtTags={taskForEditData.taskDataToEdit.tags} />
             </div>
 
-            <div className="flex mt-5">
-                <Button onClick={() => saveSettingsHandler(taskForEditData.taskDataToEdit!.id)} className="mr-2" variant="contained">
+            <div className="md:flex mt-5">
+                <Button onClick={() => saveSettingsHandler(taskForEditData.taskDataToEdit!.id)} className="mb-3 md:mr-2 md:mb-0" variant="contained">
                     Save
                 </Button>
                 <Button onClick={() => setIsOpenAlert(true)} className="bg-red-500 text-white" variant="contained">
