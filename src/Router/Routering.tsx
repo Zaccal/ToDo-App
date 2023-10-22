@@ -6,17 +6,15 @@ import Welcome from "../pages/Welcome/Welcome"
 import Home from "../pages/Home/Home"
 
 const Routering = () => {
-    const {settingsStore} = useLocalStorageContext()
-
+    const { settingsStore } = useLocalStorageContext()
+    const defualtPage = settingsStore.isShowWelcomeMenu ? <Welcome /> : <Home />
     return (
         <Routes>
-            {
-                RoutesData.map(data => {
-                    return <Route key={data.id} path={data.path} element={<data.element />} />
-                })
-            }
-            <Route path="/" element={settingsStore ? <Welcome /> : <Home />}/>
-            <Route path="*" element={<Error />}/>
+            {RoutesData.map(data => {
+                return <Route key={data.id} path={data.path} element={<data.element />} />
+            })}
+            <Route path="/" element={defualtPage} />
+            <Route path="*" element={<Error />} />
         </Routes>
     )
 }
