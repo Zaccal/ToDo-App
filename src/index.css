@@ -98,7 +98,7 @@
     }
 
     .Options {
-        @apply m-0 p-0 max-h-[15em] overflow-y-auto border rounded-lg w-full left-0 top-[110%] absolute bg-white z-3 hidden;
+        @apply dark:bg-bgColorDark dark:text-white m-0 p-0 max-h-[15em] overflow-y-auto border rounded-lg w-full left-0 top-[110%] absolute bg-white z-3 hidden;
     }
     .Options.show {
         @apply block;
@@ -108,6 +108,6 @@
         @apply transition-all py-3 px-2 cursor-pointer hover:bg-element hover:opacity-95 hover:font-bold;
     }
     .Option.selected {
-        @apply bg-element;
+        @apply bg-element font-bold;
     }
 }
