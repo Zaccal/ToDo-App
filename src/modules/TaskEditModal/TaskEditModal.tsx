@@ -5,12 +5,13 @@ import { TypeSelectOption } from "../../UI/Select/Select"
 import SelectList from "../../components/SelectList/SelectList"
 import SelcetDate from "../../components/SlectDate/SelcetDate"
 import TagPicker from "../../components/TagPicker/TagPicker"
-import { ITag } from "../../types/interfaces/Interfaces"
+import { ITag, ITask } from "../../types/interfaces/Interfaces"
 import { Button } from "../Sidebar/SidebarImports"
 import { formatDate } from "../../utils/utils"
 import Alert from "../../components/Alert/Alert"
 import useDeleteTask from "../../hooks/useDeleteTask"
 import useEditTaskSettings from "../../hooks/useEditSettings"
+import useChangeTaskList from "../../hooks/useChangeTaskList"
 
 const TaskEditModal = () => {
     const { taskForEditData, setTaskForEditData } = useGlobalStateContext()
@@ -31,6 +32,8 @@ const TaskEditModal = () => {
         setIsSetDate(taskForEditData.taskDataToEdit?.date ? true : false)
     }, [taskForEditData])
 
+    const changeListType = useChangeTaskList()
+
     const saveSettingsHandler = useEditTaskSettings(
         taskData => {
             return {
@@ -43,6 +46,11 @@ const TaskEditModal = () => {
             }
         },
         () => {
+            const taskToChangeList: ITask = taskForEditData.taskDataToEdit!
+            changeListType({
+                ...taskToChangeList,
+                fromList: fromListEdited?.label || taskToChangeList.fromList,
+            })
             setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))
         }
     )
@@ -108,7 +116,7 @@ const TaskEditModal = () => {
                 <Button onClick={() => saveSettingsHandler(taskForEditData.taskDataToEdit!.id)} className="mb-3 md:mr-2 md:mb-0" variant="contained">
                     Save
                 </Button>
-                <Button onClick={() => setIsOpenAlert(true)} className="bg-red-500 text-white" variant="contained">
+                <Button onClick={() => setIsOpenAlert(true)} className="!bg-red-500 text-white" variant="contained">
                     Delete
                 </Button>
             </div>
