@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent, useEffect } from "react"
+import { useState, KeyboardEvent, useEffect, useCallback } from "react"
 import MessageCountTitle from "../../UI/MessageCountTitle/MessageCountTitle"
 import useGetNowActiveList from "../../hooks/useGetNowActiveList"
 import Input from "../../UI/Input/Input"
@@ -33,24 +33,27 @@ const ClipboardListTitle = ({ className }: IClipboardListTitle) => {
         }
     }
 
-    const changeNameHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter" && event.currentTarget.value.length >= 1) {
-            setEditMode(false)
-            setListName(event.currentTarget.value)
+    const changeNameHandler = useCallback(
+        (event: KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === "Enter" && event.currentTarget.value.length >= 1) {
+                setEditMode(false)
+                setListName(event.currentTarget.value)
 
-            setListsStore(
-                listsStore.map(listData => {
-                    if (listData.id === nowActiveList.id) {
-                        return { ...listData, name: listName }
-                    }
+                setListsStore(
+                    listsStore.map(listData => {
+                        if (listData.id === nowActiveList.id) {
+                            return { ...listData, name: listName, tasks: listData.tasks.map(taskData => ({ ...taskData, fromList: listName })) }
+                        }
 
-                    return listData
-                })
-            )
-        }
-    }
+                        return listData
+                    })
+                )
+            }
+        },
+        [nowActiveList, listsStore]
+    )
 
-    const deleteListHandler = () => {
+    const deleteListHandler = useCallback(() => {
         setListsStore(listsStore.filter(listData => listData.id !== nowActiveList.id))
         setListsStore(prev =>
             prev.map((listData, index) => {
@@ -64,7 +67,7 @@ const ClipboardListTitle = ({ className }: IClipboardListTitle) => {
                 return listData
             })
         )
-    }
+    }, [nowActiveList, listsStore])
 
     return (
         <div className={`${className || ""} flex items-center justify-between`}>
