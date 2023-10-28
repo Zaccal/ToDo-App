@@ -95,38 +95,40 @@ const ClipboardListTitle = ({ className }: IClipboardListTitle) => {
                 )}
                 <MessageCountTitle className="ml-5" count={getListTaskDoneCount(nowActiveList.tasks)} />
             </div>
-            {isScreenMd && (
-                <div onClick={() => setIsOpenSidebarMenu(true)}>
-                    <MenuRoundedIcon
-                        style={{
-                            width: "32px",
-                            height: "32px",
-                            color: settingsStore.theme === "light" ? "#313131" : "#fff",
-                        }}
-                    />
-                </div>
-            )}
-            {nowActiveList.accessEdit && (
-                <Button
-                    onClick={() => setAlertConfirmationToDeleteList(true)}
-                    className="!border-red-500 w-10 h-10"
-                    variant="outline"
-                    icon={<DeleteRounded className="text-red-500" />}
-                ></Button>
-            )}
-            <Alert
-                onYes={{
-                    text: "Yes",
-                    event: () => {
-                        setAlertConfirmationToDeleteList(false)
-                        deleteListHandler()
-                    },
-                }}
-                subtitle={`"${nowActiveList.name}" will be permanently deleted`}
-                title="Are you sure?"
-                isOpen={alertConfirmationToDeleteList}
-                onClose={() => setAlertConfirmationToDeleteList(false)}
-            />
+            <div className="flex gap-5">
+                {nowActiveList.accessEdit && (
+                    <Button
+                        onClick={() => setAlertConfirmationToDeleteList(true)}
+                        className="!border-red-500 w-8 h-8 md:w-10 md:h-10"
+                        variant="outline"
+                        icon={<DeleteRounded className="text-red-500" />}
+                    ></Button>
+                )}
+                <Alert
+                    onYes={{
+                        text: "Yes",
+                        event: () => {
+                            setAlertConfirmationToDeleteList(false)
+                            deleteListHandler()
+                        },
+                    }}
+                    subtitle={`"${nowActiveList.name}" will be permanently deleted`}
+                    title="Are you sure?"
+                    isOpen={alertConfirmationToDeleteList}
+                    onClose={() => setAlertConfirmationToDeleteList(false)}
+                />
+                {isScreenMd && (
+                    <div className="border-2 rounded-lg" onClick={() => setIsOpenSidebarMenu(true)}>
+                        <MenuRoundedIcon
+                            style={{
+                                width: "28px",
+                                height: "28px",
+                                color: settingsStore.theme === "light" ? "#313131" : "#fff",
+                            }}
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
