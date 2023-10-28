@@ -12,6 +12,7 @@ import Alert from "../../components/Alert/Alert"
 import useDeleteTask from "../../hooks/useDeleteTask"
 import useEditTaskSettings from "../../hooks/useEditSettings"
 import useChangeTaskList from "../../hooks/useChangeTaskList"
+import CloseRounded from "@mui/icons-material/CloseRounded"
 
 const TaskEditModal = () => {
     const { taskForEditData, setTaskForEditData } = useGlobalStateContext()
@@ -65,7 +66,15 @@ const TaskEditModal = () => {
 
     return (
         <Modal isOpen={taskForEditData.isOpenModal} onClose={() => setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))}>
-            <h1 className="dark:text-white text-xl font-bold">Task:</h1>
+            <div className="flex justify-between">
+                <h1 className="dark:text-white text-xl font-bold">Task:</h1>
+                <Button
+                    onClick={() => setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))}
+                    className="w-8 h-8"
+                    variant="outline"
+                    icon={<CloseRounded />}
+                ></Button>
+            </div>
             <Divider className="my-3" />
             <Input
                 classNameContainer="h-12"

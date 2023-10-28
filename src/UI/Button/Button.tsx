@@ -13,12 +13,15 @@ interface IButton {
 }
 
 const Button = ({ children, icon, onClick, variant, className, isLink, to, iconStyles }: IButton) => {
-    const content = (
-        <div className="flex">
-            {icon && <div className={`${iconStyles || ""} flex items-center justify-center w-5 h-5 mr-3`}>{icon}</div>}
-            {children}
-        </div>
-    )
+    const content =
+        !children && icon ? (
+            icon
+        ) : (
+            <div className="flex">
+                {icon && <div className={`${iconStyles || ""} flex items-center justify-center w-5 h-5 mr-3`}>{icon}</div>}
+                {children}
+            </div>
+        )
 
     const getStylesVariant = (): string => {
         switch (variant) {

@@ -67,7 +67,7 @@
     }
 
     .button-outline {
-        @apply rounded-lg w-full font-bold flex justify-center py-3 px-2 border-2 border-[#e6e6e6];
+        @apply dark:border-gray-700 rounded-lg w-full font-bold flex items-center justify-center border-2 border-[#e6e6e6];
     }
 
     .InputContainer {
