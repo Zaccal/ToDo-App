@@ -109,7 +109,7 @@ const ClipboardListTitle = ({ className }: IClipboardListTitle) => {
             {nowActiveList.accessEdit && (
                 <Button
                     onClick={() => setAlertConfirmationToDeleteList(true)}
-                    className="border-red-500 w-10 h-10"
+                    className="!border-red-500 w-10 h-10"
                     variant="outline"
                     icon={<DeleteRounded className="text-red-500" />}
                 ></Button>
