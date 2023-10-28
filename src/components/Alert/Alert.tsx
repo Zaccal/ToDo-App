@@ -17,10 +17,10 @@ interface IAlert extends TypeCustomModal {
 const Alert = ({ isOpen, onClose, title, subtitle, onYes, onNo }: IAlert) => {
     return (
         <Modal marginTopContent={50} isOpen={isOpen} onClose={onClose}>
-            <h1 className="text-xl font-bold mb-2">{title}</h1>
-            <p>{subtitle}</p>
-            <div className="flex mt-5">
-                <Button onClick={onYes?.event} className="mr-2 bg-red-500 text-white" variant="contained">
+            <h1 className="text-xl dark:text-white font-bold mb-2">{title}</h1>
+            <p className="dark:text-gray-200">{subtitle}</p>
+            <div className="md:flex mt-5">
+                <Button onClick={onYes?.event} className="mr-2 mb-2 md:mb-0 !bg-red-500 text-white" variant="contained">
                     {onYes ? onYes.text : "Yes"}
                 </Button>
                 <Button
