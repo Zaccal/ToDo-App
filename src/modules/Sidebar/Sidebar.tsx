@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useInView } from 'react-intersection-observer'
+import { useRef, useState } from "react"
+import { useInView } from "react-intersection-observer"
 import {
     BarContainer,
     Input,
@@ -18,56 +18,50 @@ import {
     SidebarTagsRender,
     AddNewListModal,
     AddTagModal,
-    ViewTagModal
-} from "./SidebarImports";
-import { useGlobalStateContext } from "../../Providers/GlobalStateProvider/GlobalStateProvider";
-
+    ViewTagModal,
+} from "./SidebarImports"
+import { useGlobalStateContext } from "../../Providers/GlobalStateProvider/GlobalStateProvider"
 
 const Sidebar = () => {
     const isScreenMd = window.innerWidth <= 1024 ? true : false
-    const inputSearchRef = useRef<HTMLInputElement>(null) 
+    const inputSearchRef = useRef<HTMLInputElement>(null)
     const [modalsVisble, setModalsVisible] = useState({
         isSearchModalVisible: false,
         isAddTagModalVisible: false,
-        isAddListModalVisible: false
+        isAddListModalVisible: false,
     })
-    const {ref, inView} = useInView({
+    const { ref, inView } = useInView({
         threshold: 0.3,
     })
-    const {isOpenSidebarMenu, setIsOpenSidebarMenu} = useGlobalStateContext()
-        
+    const { isOpenSidebarMenu, setIsOpenSidebarMenu } = useGlobalStateContext()
+
     const openSearchModalHandler = () => {
         inputSearchRef.current?.blur()
-        setModalsVisible({...modalsVisble, isSearchModalVisible: true})
+        setModalsVisible({ ...modalsVisble, isSearchModalVisible: true })
     }
 
     return (
         <BarContainer onClose={() => setIsOpenSidebarMenu(false)} isOpen={isOpenSidebarMenu} isMobileMode={isScreenMd} title="Menu">
             <div className="h-[85vh] relative overflow-y-scroll">
-                <Input 
-                    ref={inputSearchRef} 
-                    onClick={openSearchModalHandler} 
-                    placeholder="Search" 
-                    icon={<SearchIcon />}
-                />
+                <Input ref={inputSearchRef} onClick={openSearchModalHandler} placeholder="Search" icon={<SearchIcon />} />
                 <List className="my-7" title="Tasks">
-                    <SidebarListsRender variant="defualt"/>
+                    <SidebarListsRender variant="defualt" />
                 </List>
                 <Divider />
-                <List className="mt-5 mb-7 max-h-[180px] overflow-y-scroll" title="Lists">
-                    <SidebarListsRender variant="user"/>
-                    <ListItem 
-                        onClick={() => setModalsVisible({...modalsVisble, isAddListModalVisible: true})} 
-                        icon={<AddRoundedIcon style={{width: '20px', height: '20px'}} />} 
-                        primary="Add new list" 
+                <List className="mt-5 mb-7 max-h-[220px] overflow-y-scroll" title="Lists">
+                    <SidebarListsRender variant="user" />
+                    <ListItem
+                        onClick={() => setModalsVisible({ ...modalsVisble, isAddListModalVisible: true })}
+                        icon={<AddRoundedIcon style={{ width: "20px", height: "20px" }} />}
+                        primary="Add new list"
                     />
                 </List>
                 <Divider />
                 <Stack className="mt-5 mb-5" title="Tags">
                     <SidebarTagsRender />
-                    <TagButton  
-                        onClick={() => setModalsVisible({...modalsVisble, isAddTagModalVisible: true})} 
-                        icon={<AddRoundedIcon style={{width: '18px', height: '18px'}} />}
+                    <TagButton
+                        onClick={() => setModalsVisible({ ...modalsVisble, isAddTagModalVisible: true })}
+                        icon={<AddRoundedIcon style={{ width: "18px", height: "18px" }} />}
                     >
                         Add Tag
                     </TagButton>
@@ -76,28 +70,28 @@ const Sidebar = () => {
             </div>
             <BarFooter>
                 <div className="px-4">
-                    <div className={`${inView ? 'border-t-0' : 'border-t-[1px]' } dark:border-gray-400`}>
+                    <div className={`${inView ? "border-t-0" : "border-t-[1px]"} dark:border-gray-400`}>
                         <Button className="text-sm lg:pb-2 pb-0" isLink to="/settings" variant="text" icon={<TuneIcon />}>
                             Settings
                         </Button>
                     </div>
                 </div>
             </BarFooter>
-            <SearchModal 
-                isOpen={modalsVisble.isSearchModalVisible} 
-                onClose={() => setModalsVisible({...modalsVisble, isSearchModalVisible: false})} 
+            <SearchModal
+                isOpen={modalsVisble.isSearchModalVisible}
+                onClose={() => setModalsVisible({ ...modalsVisble, isSearchModalVisible: false })}
             />
-            <AddTagModal 
-                isOpen={modalsVisble.isAddTagModalVisible} 
-                onClose={() => setModalsVisible({...modalsVisble, isAddTagModalVisible: false})}
+            <AddTagModal
+                isOpen={modalsVisble.isAddTagModalVisible}
+                onClose={() => setModalsVisible({ ...modalsVisble, isAddTagModalVisible: false })}
             />
-            <AddNewListModal 
-                isOpen={modalsVisble.isAddListModalVisible} 
-                onClose={() => setModalsVisible({...modalsVisble, isAddListModalVisible: false})}
+            <AddNewListModal
+                isOpen={modalsVisble.isAddListModalVisible}
+                onClose={() => setModalsVisible({ ...modalsVisble, isAddListModalVisible: false })}
             />
             <ViewTagModal />
         </BarContainer>
-    );
-};
+    )
+}
 
-export default Sidebar;
+export default Sidebar
