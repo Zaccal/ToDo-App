@@ -18,7 +18,6 @@ const Settings = () => {
             theme: darkMode ? "dark" : "light",
             isShowWelcomeMenu,
         })
-        console.log(true)
     }, [darkMode, isShowWelcomeMenu])
 
     return (

@@ -99,7 +99,7 @@
     }
 
     .Checkbox {
-        @apply w-5 h-5 transition-all flex justify-center items-center cursor-pointer rounded-md border-2 border-muteDark;
+        @apply min-w-[20px] w-5 min-h-[20px] h-5 transition-all flex justify-center items-center cursor-pointer rounded-md border-2 border-muteDark;
     }
 
     .CheckboxText {

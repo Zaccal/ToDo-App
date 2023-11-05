@@ -1,12 +1,13 @@
 import { useState, useEffect, KeyboardEvent } from "react"
 import Input from "../../UI/Input/Input"
 import AddRoundedIcon from "@mui/icons-material/AddRounded"
-import { ITag, ITask } from "../../types/interfaces/Interfaces"
+import { ITask } from "../../types/interfaces/Interfaces"
 import useGetNowActiveList from "../../hooks/useGetNowActiveList"
 import DatePickerIcon from "../../UI/DatePickerIcon/DatePickerIcon"
 import { formatDate, getTypeCategorySortTask } from "../../utils/utils"
 import { useLocalStorageContext } from "../../Providers/LocalStorageProvider/LocalStorageProvider"
 import TagPickerIcon from "../TagPicker/TagPickerIcon"
+import AddSubtaskIcon from "../SubtaskInteraction/AddSubtaskIcon"
 
 const AddNewTaskInput = () => {
     const { name } = useGetNowActiveList()
@@ -35,7 +36,7 @@ const AddNewTaskInput = () => {
 
     const addNewTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter" && event.currentTarget.value.length) {
-            setNewTaskData({ ...newTaskData, name: "" })
+            setNewTaskData({ ...newTaskData, name: "", subtasks: [] })
             const TypeCategoryTask = getTypeCategorySortTask(newTaskData)
 
             setListsStore(
@@ -69,8 +70,9 @@ const AddNewTaskInput = () => {
                 classNameContainer="px-3 h-12"
                 className="pl-2"
                 subheader={
-                    <div className="flex">
-                        <TagPickerIcon saveOn={tags => setNewTaskData({ ...newTaskData, tags: tags })} className="mr-2" />
+                    <div className="flex gap-2">
+                        <AddSubtaskIcon newTaskData={newTaskData} setNewTaskData={setNewTaskData} />
+                        <TagPickerIcon saveOn={tags => setNewTaskData({ ...newTaskData, tags: tags })} />
                         <DatePickerIcon saveSelectedDate={pickedDate} setSaveSelectedDate={setPickedDate} />
                     </div>
                 }

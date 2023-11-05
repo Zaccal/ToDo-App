@@ -1,28 +1,19 @@
-import List from "../../UI/List/List";
-import useGetNowActiveList from "../../hooks/useGetNowActiveList";
-import Task from "../Task/Task";
+import List from "../../UI/List/List"
+import useGetNowActiveList from "../../hooks/useGetNowActiveList"
+import Task from "../Task/Task"
 
 const TasksListRender = () => {
-    const {tasks} = useGetNowActiveList()
-    
-    return (
-        <List gapListItems={false}>
-            {tasks.map(taskData => {
-                return (
-                    <Task
-                        id={taskData.id}
-                        subtasksCount={taskData.subtasks.length}
-                        key={taskData.id}
-                        name={taskData.name}
-                        isDone={taskData.isDone}
-                        date={taskData.date}
-                        fromList={taskData.fromList}
-                        taskFullDate={taskData}
-                    />
-                );
-            })}
-        </List>
-    );
-};
+    const { tasks } = useGetNowActiveList()
 
-export default TasksListRender;
+    return (
+        <>
+            <List gapListItems={false}>
+                {tasks.map(taskData => {
+                    return <Task key={taskData.id} {...taskData} taskFullDate={taskData} subtasksCount={taskData.subtasks.length} />
+                })}
+            </List>
+        </>
+    )
+}
+
+export default TasksListRender
