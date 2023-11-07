@@ -7,11 +7,14 @@ interface IList {
     className?: string
     titleSize?: number
     gapListItems?: boolean
+    maxHight?: number
 }
+
+// ! gotta create adaptive for taskListRender for log of tasks !
 
 const List = ({ title, children, className, titleSize = 14, gapListItems = true }: IList) => {
     return (
-        <div className={`${className || ""} w-full py-1 overflow-y-scroll ${gapListItems ? classes.List : ""}`}>
+        <div className={`${className || ""} w-full py-1 max-h-[81vh] overflow-y-scroll ${gapListItems ? classes.List : ""}`}>
             {title && (
                 <div
                     style={{
