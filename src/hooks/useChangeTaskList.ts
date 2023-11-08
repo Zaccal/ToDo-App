@@ -6,18 +6,26 @@ const useChangeTaskList = () => {
     const { listsStore, setListsStore } = useLocalStorageContext()
 
     return useCallback(
-        (task: ITask) => {
-            setListsStore(
-                listsStore.map(listData => {
-                    if (listData.tasks.some(taskData => taskData.id === task.id) && listData.name !== task.fromList) {
+        (whereToMove: string, taskId: number) => {
+            const task = listsStore
+                .find(listData => listData.tasks.some(taskData => taskData.id === taskId))!
+                .tasks.find(taskData => taskData.id === taskId)!
+
+            if (whereToMove === task.fromList) return
+
+            setListsStore(prev =>
+                prev.map(listData => {
+                    if (listData.tasks.some(taskData => taskData.id === taskId) && listData.name !== whereToMove) {
                         return {
                             ...listData,
-                            tasks: listData.tasks.filter(taskData => taskData.id !== task.id),
+                            tasks: listData.tasks.filter(taskData => taskData.id !== taskId),
                         }
-                    } else if (!listData.tasks.some(taskData => taskData.id === task.id) && listData.name === task.fromList) {
+                    }
+
+                    if (!listData.tasks.some(taskData => taskData.id === taskId) && listData.name === whereToMove) {
                         return {
                             ...listData,
-                            tasks: [...listData.tasks, task],
+                            tasks: [...listData.tasks, { ...task, fromList: listData.name }],
                         }
                     }
 

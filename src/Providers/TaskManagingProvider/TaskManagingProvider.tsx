@@ -1,57 +1,35 @@
-import { ReactElement, useEffect, useState } from "react";
-import { getTypeCategorySortTask } from "../../utils/utils";
-import { useLocalStorageContext } from "../LocalStorageProvider/LocalStorageProvider";
+import { ReactElement, useEffect, useState } from "react"
+import { getTypeCategorySortTask } from "../../utils/utils"
+import { useLocalStorageContext } from "../LocalStorageProvider/LocalStorageProvider"
+import { ITask } from "../../types/interfaces/Interfaces"
 
 interface ITaskManagingProvider {
-    children: ReactElement;
+    children: ReactElement
 }
 
 const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
     const [currentDate, setCurrentDate] = useState(new Date())
-    const {listsStore, setListsStore} = useLocalStorageContext()
+    const { listsStore, setListsStore } = useLocalStorageContext()
 
     useEffect(() => {
-        const intervalId = setInterval(() => {            
-            const newDate = new Date();
-            if (newDate.getDate() !== currentDate.getDate()) {                
-                setCurrentDate(newDate);
-                const newListStore = [
-                    ...listsStore.slice(0, 2).map(listData => {
-                        if (listData.name === 'Upcoming') {
-                            return {
-                                ...listData,
-                                tasks: listData.tasks.filter(taskData => {                                
-                                    if (getTypeCategorySortTask(taskData) === 'Upcoming' || taskData.fromList === 'Upcoming') {
-                                        return true
-                                    }
-                                })
-                            }
-                        }
-        
-                        return {
-                            ...listData,
-                            tasks: listData.tasks.filter(taskData => {
-                                if (getTypeCategorySortTask(taskData) === 'Today' || taskData.fromList === 'Today') {
-                                    return true
-                                }
-                            })
-                        }
-        
-                    }), 
-                    ...listsStore.slice(2)
-                ]
-    
-                setListsStore(newListStore)
-          }
-        }, 60000); 
-      
+        const intervalId = setInterval(() => {
+            const newDate = new Date()
+            if (newDate.getMinutes() !== currentDate.getMinutes()) {
+                setCurrentDate(newDate)
+                /**
+                 * Here write algorithm for change tasks if date be raven to date today
+                 * change task to list "Today" or if type is "Upcoming" just change
+                 * list to "Upcoimg" (Idea: you can use hook "useChangeTaskList.ts")
+                 */
+            }
+        }, 500)
+
         return () => {
-          clearInterval(intervalId);
-        };
-      }, [currentDate]); 
-      
+            clearInterval(intervalId)
+        }
+    }, [currentDate])
 
-    return <>{children}</>;
-};
+    return <>{children}</>
+}
 
-export default TaskManagingProvider;
+export default TaskManagingProvider

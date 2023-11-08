@@ -37,7 +37,7 @@ const TaskEditModal = () => {
 
     const saveSettingsHandler = useEditTaskSettings(
         taskData => {
-            return {
+            const editedTask = {
                 ...taskData,
                 tags: pickedTags,
                 fromList: fromListEdited?.label || taskData.fromList,
@@ -45,13 +45,13 @@ const TaskEditModal = () => {
                 decriptiton: inputValues.description,
                 name: inputValues.title,
             }
+
+            return editedTask
         },
         () => {
-            const taskToChangeList: ITask = taskForEditData.taskDataToEdit!
-            changeListType({
-                ...taskToChangeList,
-                fromList: fromListEdited?.label || taskToChangeList.fromList,
-            })
+            const whereTo = fromListEdited?.label ? fromListEdited.label : taskForEditData.taskDataToEdit!.fromList
+
+            changeListType(whereTo, taskForEditData.taskDataToEdit!.id)
             setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))
         }
     )
