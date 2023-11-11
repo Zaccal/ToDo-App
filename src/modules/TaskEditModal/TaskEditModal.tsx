@@ -5,7 +5,7 @@ import { TypeSelectOption } from "../../UI/Select/Select"
 import SelectList from "../../components/SelectList/SelectList"
 import SelcetDate from "../../components/SlectDate/SelcetDate"
 import TagPicker from "../../components/TagPicker/TagPicker"
-import { ITag, ITask } from "../../types/interfaces/Interfaces"
+import { ITag } from "../../types/interfaces/Interfaces"
 import { Button } from "../Sidebar/SidebarImports"
 import { formatDate } from "../../utils/utils"
 import Alert from "../../components/Alert/Alert"
@@ -52,7 +52,7 @@ const TaskEditModal = () => {
             changeListType(whereTo, taskForEditData.taskDataToEdit!.id, true)
 
             if (isSetDate && fromListEdited?.label !== "Calendar" && taskForEditData.taskDataToEdit?.name !== "Calendar") {
-                changeListType("Calendar", taskForEditData.taskDataToEdit!.id, false, false, formatDate(dateEdited))
+                changeListType("Calendar", taskForEditData.taskDataToEdit!.id, false, false)
             }
 
             setTaskForEditData(prev => ({ ...prev, isOpenModal: false }))

@@ -25,7 +25,7 @@ const EditSubtaskIcon = ({ taskDate, title = "Subtask" }: IEditSubtaskIcon) => {
         if (event.key === "Enter" && subtaskName) {
             setListsStore(
                 listsStore.map(listData => {
-                    if (listData.name === taskDate.fromList) {
+                    if (listData.tasks.some(taskData => taskData.id === taskDate.id)) {
                         return {
                             ...listData,
                             tasks: listData.tasks.map(taskDataList => {
