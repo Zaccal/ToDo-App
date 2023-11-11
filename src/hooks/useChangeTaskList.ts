@@ -1,12 +1,11 @@
 import { useCallback } from "react"
 import { useLocalStorageContext } from "../Providers/LocalStorageProvider/LocalStorageProvider"
-import { ITask } from "../types/interfaces/Interfaces"
 
-const useChangeTaskList = () => {
+const useChangeTaskList = (isChangeFromListNameTopLevel = true) => {
     const { listsStore, setListsStore } = useLocalStorageContext()
 
     return useCallback(
-        (whereToMove: string, taskId: number) => {
+        (whereToMove: string, taskId: number, isChangeFromListName = isChangeFromListNameTopLevel) => {
             const task = listsStore
                 .find(listData => listData.tasks.some(taskData => taskData.id === taskId))!
                 .tasks.find(taskData => taskData.id === taskId)!
@@ -25,7 +24,7 @@ const useChangeTaskList = () => {
                     if (!listData.tasks.some(taskData => taskData.id === taskId) && listData.name === whereToMove) {
                         return {
                             ...listData,
-                            tasks: [...listData.tasks, { ...task, fromList: listData.name }],
+                            tasks: [...listData.tasks, { ...task, fromList: isChangeFromListName ? listData.name : task.fromList }],
                         }
                     }
 
