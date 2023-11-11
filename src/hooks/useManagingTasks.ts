@@ -12,13 +12,16 @@ const useManagingTasks = () => {
             const taskToday = listData.tasks.filter(taskData => getTypeCategorySortTask(taskData) === "Today")
 
             taskToday.forEach(taskData => {
-                changeTaskList("Today", taskData.id)
+                if (listsStore.find(listData => listData.name === "Today")!.tasks.some(taskDataToday => taskDataToday.id !== taskData.id)) {
+                    changeTaskList("Today", taskData.id)
+                }
             })
 
             const taskUpcoming = listData.tasks.filter(taskData => getTypeCategorySortTask(taskData) === "Upcoming")
 
             taskUpcoming.forEach(taskData => {
-                changeTaskList("Upcoming", taskData.id)
+                if (listsStore.find(listData => listData.name === "Upcoming")!.tasks.some(taskDataToday => taskDataToday.id !== taskData.id))
+                    changeTaskList("Upcoming", taskData.id)
             })
         })
     }, [listsStore])
