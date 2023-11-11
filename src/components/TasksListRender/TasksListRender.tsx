@@ -4,7 +4,6 @@ import Task from "../Task/Task"
 
 const TasksListRender = () => {
     const { tasks } = useGetNowActiveList()
-    const max_hight_tasks_cliboard = window.innerHeight % 20
 
     return (
         <>

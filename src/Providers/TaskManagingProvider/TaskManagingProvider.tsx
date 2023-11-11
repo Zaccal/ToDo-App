@@ -1,7 +1,5 @@
 import { ReactElement, useEffect, useState } from "react"
-import { getTypeCategorySortTask } from "../../utils/utils"
-import { useLocalStorageContext } from "../LocalStorageProvider/LocalStorageProvider"
-import useChangeTaskList from "../../hooks/useChangeTaskList"
+import useManagingTasks from "../../hooks/useManagingTasks"
 
 interface ITaskManagingProvider {
     children: ReactElement
@@ -9,27 +7,18 @@ interface ITaskManagingProvider {
 
 const TaskManagingProvider = ({ children }: ITaskManagingProvider) => {
     const [currentDate, setCurrentDate] = useState(new Date())
-    const { listsStore } = useLocalStorageContext()
-    const changeTaskList = useChangeTaskList(false)
+    const managTask = useManagingTasks()
+
+    useEffect(() => {
+        managTask()
+    }, [])
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             const newDate = new Date()
             if (newDate.getMinutes() !== currentDate.getMinutes()) {
                 setCurrentDate(newDate)
-                listsStore.forEach(listData => {
-                    const taskToday = listData.tasks.filter(taskData => getTypeCategorySortTask(taskData) === "Today")
-
-                    taskToday.forEach(taskData => {
-                        changeTaskList("Today", taskData.id)
-                    })
-
-                    const taskUpcoming = listData.tasks.filter(taskData => getTypeCategorySortTask(taskData) === "Upcoming")
-
-                    taskUpcoming.forEach(taskData => {
-                        changeTaskList("Upcoming", taskData.id)
-                    })
-                })
+                managTask()
             }
         }, 500)
 
