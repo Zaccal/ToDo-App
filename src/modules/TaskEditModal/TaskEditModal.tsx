@@ -49,7 +49,7 @@ const TaskEditModal = () => {
         () => {
             const whereTo = fromListEdited?.label ? fromListEdited.label : taskForEditData.taskDataToEdit!.fromList
 
-            changeListType(whereTo, taskForEditData.taskDataToEdit!.id, true)
+            changeListType(whereTo, taskForEditData.taskDataToEdit!.id, true, true)
 
             if (isSetDate && fromListEdited?.label !== "Calendar" && taskForEditData.taskDataToEdit?.name !== "Calendar") {
                 changeListType("Calendar", taskForEditData.taskDataToEdit!.id, false, false, formatDate(dateEdited))

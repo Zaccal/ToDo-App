@@ -116,7 +116,7 @@
     }
 
     .Select {
-        @apply dark:border-gray-500 dark:text-gray-500 cursor-pointer relative w-[20em] min-h-[1.5em] border  rounded-lg flex items-center gap-[.5em] p-[.5em] outline-none focus:border-element;
+        @apply dark:border-gray-500 dark:text-gray-500 cursor-pointer relative max-w-[20em] min-h-[1.5em] border  rounded-lg flex items-center gap-[.5em] p-[.5em] outline-none focus:border-element;
     }
 
     .Options {
