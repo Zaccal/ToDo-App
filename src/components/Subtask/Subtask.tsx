@@ -25,7 +25,7 @@ const Subtask = ({ isDone, name, id, setSubtask, setTask, task, isTaskExist = fa
         } else {
             setListsStore(
                 listsStore.map(listData => {
-                    if (listData.name === task.fromList) {
+                    if (listData.tasks.some(taskData => taskData.id === task.id)) {
                         return {
                             ...listData,
                             tasks: listData.tasks.map(taskData => {
@@ -67,7 +67,7 @@ const Subtask = ({ isDone, name, id, setSubtask, setTask, task, isTaskExist = fa
 
         setListsStore(
             listsStore.map(listData => {
-                if (listData.name === task.fromList) {
+                if (listData.tasks.some(taskData => taskData.id === task.id)) {
                     return {
                         ...listData,
                         tasks: listData.tasks.map(taskData => {
